@@ -12,12 +12,12 @@ public class GameManager : MonoBehaviour
     public GameObject aimGuideMesh;
     public GameObject ball;
 
-    public GameObject MainMenuUI;
-    public GameObject GamePlayUI;
-    public GameObject LevelCompleteUI;
-    public GameObject LevelFailUI;
-    public GameObject GameCompleteUI;
-    public GameObject PauseMenuUI;
+    //public GameObject MainMenuUI;
+    //public GameObject GamePlayUI;
+    //public GameObject LevelCompleteUI;
+    //public GameObject LevelFailUI;
+    //public GameObject GameCompleteUI;
+    //public GameObject PauseMenuUI;
     
     public GameObject BallGroup;    
 
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     {
         _ballController = ball.GetComponent<BallController>();
         _levelManager = levelManager.GetComponent<LevelManager>();
-        _uIManager = uIManager.GetComponent<UIManager>();
+        _uIManager = uIManager.GetComponent<UIManager>(); // this seems clunky, 2 references just to get a refernce to one script....
         startPosition = GameObject.FindWithTag("StartPos");
         cameraOrbit.GetComponent<MouseOrbitImproved>().enabled = false;
     }
@@ -65,11 +65,13 @@ public class GameManager : MonoBehaviour
         switch (gameState)
         {
             case GameState.MainMenu:
-                MainMenuUI.SetActive(true);
-                GamePlayUI.SetActive(false);
-                LevelCompleteUI.SetActive(false);
-                GameCompleteUI.SetActive(false);
-                LevelFailUI.SetActive(false);
+                _uIManager.UIMainMenu();
+                //MainMenuUI.SetActive(true);
+                //GamePlayUI.SetActive(false);
+                //LevelCompleteUI.SetActive(false);
+                //GameCompleteUI.SetActive(false);
+                //LevelFailUI.SetActive(false);
+
                 break;
 
 
@@ -77,11 +79,13 @@ public class GameManager : MonoBehaviour
 
             case GameState.Aim:
                 cameraOrbit.GetComponent<MouseOrbitImproved>().enabled = true;
-                MainMenuUI.SetActive(false);
-                GamePlayUI.SetActive(true);
-                LevelCompleteUI.SetActive(false);
-                GameCompleteUI.SetActive(false);
-                LevelFailUI.SetActive(false);
+
+                _uIManager.UIAim();
+                //MainMenuUI.SetActive(false);
+                //GamePlayUI.SetActive(true);
+                //LevelCompleteUI.SetActive(false);
+                //GameCompleteUI.SetActive(false);
+                //LevelFailUI.SetActive(false);
 
                 _uIManager.modeText.text = "Aim with MOUSE \n & \n Shoot with SPACE";
 
@@ -142,8 +146,9 @@ public class GameManager : MonoBehaviour
                     cameraOrbit.GetComponent<MouseOrbitImproved>().enabled = false;
                     aimGuideMesh.SetActive(false);
 
-                    GamePlayUI.SetActive(false);
-                    LevelFailUI.SetActive(true);
+                    _uIManager.UILose();
+                    //GamePlayUI.SetActive(false);
+                    //LevelFailUI.SetActive(true);
                 }
                 else
                 { gameState = GameState.Aim; }
@@ -156,19 +161,24 @@ public class GameManager : MonoBehaviour
             case GameState.LevelComplete:
 
                 cameraOrbit.GetComponent<MouseOrbitImproved>().enabled = false;
-                MainMenuUI.SetActive(false);
-                GamePlayUI.SetActive(false);
-                //play Fireworks
+
+                _uIManager.UILevelComplete();
+                //MainMenuUI.SetActive(false);
+                //GamePlayUI.SetActive(false);
+
+                //TODO: play Fireworks
 
                 int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
                 
                 if (nextScene > SceneManager.sceneCountInBuildSettings -1) 
                 {                    
-                    GameCompleteUI.SetActive(true);
+                    _uIManager.UIGameComplete();
+                    //GameCompleteUI.SetActive(true);
                 }
                 else
                 {
-                    LevelCompleteUI.SetActive(true);
+                    _uIManager.UILevelComplete();
+                    //LevelCompleteUI.SetActive(true);
                 }      
                 
                 break;
@@ -178,7 +188,10 @@ public class GameManager : MonoBehaviour
 
             case GameState.Paused:
                 cameraOrbit.GetComponent<MouseOrbitImproved>().enabled = false;
-                PauseMenuUI.SetActive(true);
+                
+                _uIManager.UIPaused();                
+                //PauseMenuUI.SetActive(true);
+
                 Time.timeScale = 0f;
 
                 if(Input.GetKeyDown(KeyCode.Escape))
@@ -231,7 +244,10 @@ public class GameManager : MonoBehaviour
     public void loadNextLevel()
     {
         _levelManager.LoadNextlevel();
-        LevelCompleteUI.SetActive(false);
+
+        _uIManager.DisableAllUIPanels();
+        //LevelCompleteUI.SetActive(false);
+
         _ballController.StopBall();        
         gameState = GameState.Aim;
         cameraOrbit.GetComponent<MouseOrbitImproved>().enabled = true;        
@@ -239,8 +255,11 @@ public class GameManager : MonoBehaviour
 
     public void ReloadLevel()
     {
-        LevelCompleteUI.SetActive(false);
-        PauseMenuUI.SetActive(false);
+        _uIManager.DisableAllUIPanels();  // check to see whats the default state..        
+        //LevelCompleteUI.SetActive(false);
+        //PauseMenuUI.SetActive(false);
+
+
         Time.timeScale = 1f;
         _ballController.StopBall();
         _levelManager.ReloadCurrentScene();
@@ -250,7 +269,9 @@ public class GameManager : MonoBehaviour
 
     public void returnToMainMenu()
     {
-        PauseMenuUI.SetActive(false);
+        _uIManager.DisableAllUIPanels(); //maybe just set to UIMainMenu
+        //PauseMenuUI.SetActive(false);
+
         Time.timeScale = 1f;
         _levelManager.LoadMainMenu();
         gameState = GameState.MainMenu;
@@ -274,7 +295,10 @@ public class GameManager : MonoBehaviour
     public void UnPause()
     {
         cameraOrbit.GetComponent<MouseOrbitImproved>().enabled = true;
-        PauseMenuUI.SetActive(false);
+
+        _uIManager.UIAim(); 
+        //PauseMenuUI.SetActive(false);
+
         Time.timeScale = 1f;
         gameState = LastGameState;
     }

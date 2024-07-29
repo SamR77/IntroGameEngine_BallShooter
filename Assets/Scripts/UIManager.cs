@@ -14,6 +14,16 @@ public class UIManager : MonoBehaviour
     //private GameObject gameManager;
     //private GameManager _gameManager;
 
+    public GameObject gamePlayUI;
+    public GameObject mainMenuUI;
+    public GameObject levelCompleteUI;
+    public GameObject gameCompleteUI;
+    public GameObject levelFailUI;
+    public GameObject pauseMenuUI;
+
+
+
+
 
     public Text modeText;    
     public Text ShotsLeftCount;
@@ -29,7 +39,61 @@ public class UIManager : MonoBehaviour
     {
         LevelCount.text = count.ToString();
     }
-        
+
+    public void UIMainMenu()
+    {
+        DisableAllUIPanels();
+        mainMenuUI.SetActive(true);
+    }
+
+    public void UIAim() // same as UIRolling.. consider merging them into one method for UIGameplay? make sure there are no issues first
+    {
+        DisableAllUIPanels();
+        gamePlayUI.SetActive(true);
+    }
+
+    public void UIRolling()
+    {
+        DisableAllUIPanels();
+        gamePlayUI.SetActive(true);
+
+
+    }
+
+    public void UILose()
+    {
+        DisableAllUIPanels();
+        levelFailUI.SetActive(true);
+    }
+
+    public void UILevelComplete()
+    {
+        DisableAllUIPanels();
+        levelCompleteUI.SetActive(true);
+    }
+
+    public void UIGameComplete()
+    {
+        DisableAllUIPanels();
+        gameCompleteUI.SetActive(true);
+    }
+
+    public void UIPaused()
+    {
+        DisableAllUIPanels();
+        pauseMenuUI.SetActive(true);
+    }
+
+    public void DisableAllUIPanels()
+    {
+        gamePlayUI.SetActive(false);
+        mainMenuUI.SetActive(false);
+        levelCompleteUI.SetActive(false);
+        gameCompleteUI.SetActive(false);
+        levelFailUI.SetActive(false);
+        pauseMenuUI.SetActive(false);
+    }
+
 
 
 }
