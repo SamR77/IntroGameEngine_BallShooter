@@ -1,0 +1,52 @@
+﻿
+Sam Robichaud 
+NSCC Truro 2022
+
+
+═════ TODO: High Priority ══════
+
+• Refactor to a cleaner State Machine (Significant Revision)
+
+• Fix camera collision: 
+	- Option 1: Change to Cinemachine Camera System < - Likely the better fix
+	- Alternative A: https://www.youtube.com/watch?v=mZXYSihSl3I
+	- Alternative B: https://www.youtube.com/watch?v=mZXYSihSl3I
+
+• Remove mouse cursor from gameplay state
+
+
+══════ TODO: Nice to Have / Low Priority ══════
+
+• Switch to using New Input System
+• Update aiming guide, new visual and remove stuttering
+• Add celebration VFX for end of level
+• Look at which UI panels could be combined together and dynamically change content (Ex: Might be possible to use the same UIPanel for level Complete, Level Failed & Game Complete)
+• Expand Ball Control, player can modify how much power to apply to ball shot
+• Switch to using New Input System
+• Add Background Music
+• Add SFX support for game events (add public slots to allow player to swap out SFX)
+• Add Prefabs for gameplay mechanics (Ex: Boost pad, Jump Pad, Slow pad, Destruction etc)
+
+
+════ COMPLETED ═════
+
+• July/31/2024: 
+• July/31/2024: Changed DevNotes to .txt instead of .cs
+• July/31/2024: Created basic script structure for Updated State Machine
+• Pre 2024: Title Screen
+• Pre 2024: General Screen flow
+• Pre 2024: on screen instructions
+• Pre 2024: Fix aim guide rotation by destroying the object on shoot, the reinstantiating on aim mode
+• Pre 2024: block out controls while ball is rolling
+• Pre 2024: triggerm volume for end game level
+• Pre 2024: return control when velocity goes below a certain threshold
+• Pre 2024: Level Manager
+• Pre 2024: start position for every level
+• Pre 2024: add Singleton Pattern to carry GameManager between levels
+• Pre 2024: add slowdown when velocity goes below a certain threshold
+• Pre 2024: add trigger volume below level to catch stray balls
+
+
+
+
+
