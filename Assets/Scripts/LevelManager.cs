@@ -19,13 +19,18 @@ public class LevelManager : MonoBehaviour
         
         if (nextScene <= 5)
         {
-            SceneManager.LoadScene(nextScene);                       
+            SceneManager.LoadScene(nextScene);            
         }
 
         else if (nextScene >= 6)
         {
             Debug.Log("All levels complete!");
         }
+
+        //
+
+
+
     }
 
     public void LoadMainMenu()

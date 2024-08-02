@@ -1,59 +1,86 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static GameManager_Backup;
 
 public class GameStateManager : MonoBehaviour
 {
-    private IGameState currentState;
+    [Header("Debug")]       
+    [SerializeField] private string lastActiveState;
+    [SerializeField] private string currentActiveState;      
 
-    [Header("Debug")]
-    public string currentActiveState;
+    [Header("Script References")]
+    public UIManager _uIManager;
+    public LevelManager _levelManager;
+    public GameManager _gameManager;
+    public MouseOrbitImproved _cameraOrbit;
+    public BallManager _ballManager;
 
-    public GameState_MainMenu gameState_MainMenu = new GameState_MainMenu();
-    public GameState_LevelLoad gameState_LevelLoad = new GameState_LevelLoad();
+    //private variables
+    private IGameState currentGameState;
+
+
+    public IGameState lastGameState;
+
+
+
+
+
+    public GameState_GameInit gameState_GameInit = new GameState_GameInit();
+    public GameState_MainMenu gameState_MainMenu = new GameState_MainMenu();    
     public GameState_Aim gameState_Aim = new GameState_Aim();
     public GameState_Rolling gameState_Rolling = new GameState_Rolling();
-    public GameState_WinCheck gameState_WinCheck = new GameState_WinCheck();
     public GameState_LevelComplete gameState_LevelComplete = new GameState_LevelComplete();
     public GameState_GameComplete gameState_GameComplete = new GameState_GameComplete();
-    public GameState_LevelFailed gameState_LevelFail = new GameState_LevelFailed();
+    public GameState_LevelFailed gameState_LevelFailed = new GameState_LevelFailed();
+    public GameState_Paused gameState_Paused = new GameState_Paused();
 
 
-    void Start()
+
+
+    void Awake()
     {
-        currentState = gameState_MainMenu;
-        //SwitchToState(gameState_MainMenu);
+        _uIManager = GetComponentInChildren<UIManager>(true);
+        _levelManager = GetComponentInChildren<LevelManager>(true);
+        _gameManager = GetComponentInChildren<GameManager>(true);
+        _cameraOrbit = GetComponentInChildren<MouseOrbitImproved>(true);
+        _ballManager = GetComponentInChildren<BallManager>(true);
+
+        currentGameState = gameState_GameInit;
     }
 
-    private void FixedUpdate()
-    {
-
-
-        currentState.FixedUpdateState(this);
-    }
-
-
+    void Start()                {   currentGameState.EnterState(this);          }
+    private void FixedUpdate()  {   currentGameState.FixedUpdateState(this);    }
     private void Update()
     {
-        //debug to show current active state in inspector
-        currentActiveState = currentState.ToString();
-
-        currentState.UpdateState(this);
+        currentGameState.UpdateState(this);
+        currentActiveState = currentGameState.ToString();   // display in inspector for debugging
+        lastActiveState = lastGameState.ToString();         // display in inspector for debugging
     }
+
+    private void LateUpdate()   {   currentGameState.LateUpdateState(this);     }
 
     public void SwitchToState(IGameState newState)
     {
         // Call the ExitState method of the current state, passing 'this' as the context
         // This allows the current state to perform any necessary cleanup or transition logic
-        currentState.ExitState(this);
+        currentGameState.ExitState(this);
 
         // Update the current state to the new state provided as a parameter
-        currentState = newState;
+        currentGameState = newState;
 
         // Call the EnterState method of the new current state, passing 'this' as the context
         // This allows the new state to initialize or set up as it becomes active
-        currentState.EnterState(this);
-    
+        currentGameState.EnterState(this);
+    }
+    public void ButtonResume()
+    {
+        gameState_Paused.UnPause(this);
+    }
+
+    public void storeLastState()
+    {
+        lastGameState = currentGameState;
     }
 
 }

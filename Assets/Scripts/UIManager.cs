@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
 {
     //Script references
     public GameObject ball;
-    private BallController _ballController;
+    private BallManager _ballController;
 
     //private GameObject gameManager;
     //private GameManager _gameManager;
@@ -18,7 +18,7 @@ public class UIManager : MonoBehaviour
     public GameObject mainMenuUI;
     public GameObject levelCompleteUI;
     public GameObject gameCompleteUI;
-    public GameObject levelFailUI;
+    public GameObject levelFailedUI;
     public GameObject pauseMenuUI;
 
 
@@ -46,24 +46,18 @@ public class UIManager : MonoBehaviour
         mainMenuUI.SetActive(true);
     }
 
-    public void UIAim() // same as UIRolling.. consider merging them into one method for UIGameplay? make sure there are no issues first
+    public void UIGamePlay() // same as UIRolling.. consider merging them into one method for UIGameplay? make sure there are no issues first
     {
         DisableAllUIPanels();
         gamePlayUI.SetActive(true);
     }
 
-    public void UIRolling()
+
+
+    public void UILevelFailed()
     {
         DisableAllUIPanels();
-        gamePlayUI.SetActive(true);
-
-
-    }
-
-    public void UILose()
-    {
-        DisableAllUIPanels();
-        levelFailUI.SetActive(true);
+        levelFailedUI.SetActive(true);
     }
 
     public void UILevelComplete()
@@ -90,7 +84,7 @@ public class UIManager : MonoBehaviour
         mainMenuUI.SetActive(false);
         levelCompleteUI.SetActive(false);
         gameCompleteUI.SetActive(false);
-        levelFailUI.SetActive(false);
+        levelFailedUI.SetActive(false);
         pauseMenuUI.SetActive(false);
     }
 

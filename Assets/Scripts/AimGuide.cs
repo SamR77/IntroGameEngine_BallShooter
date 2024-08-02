@@ -8,13 +8,13 @@ using UnityEngine;
 public class AimGuide : MonoBehaviour
 {
     public GameObject ball;
-    public GameObject meshHandler;
+    //public GameObject meshHandler;
 
-    private BallController _ballController;
+    private BallManager _ballController;
 
     private void Start()
     {
-        _ballController = ball.GetComponent<BallController>();
+        _ballController = ball.GetComponent<BallManager>();
     }
     
 

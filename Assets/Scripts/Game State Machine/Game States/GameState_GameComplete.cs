@@ -16,10 +16,8 @@ public class GameState_GameComplete : IGameState
 
     public void UpdateState(GameStateManager gameStateManager)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            //gameStateManager.SwitchToState(gameStateManager.gameplayState);
-        }
+        // need logic for button...
+        // Return to main menu, method contained in the Level Manager
     }
 
     public void LateUpdateState(GameStateManager gameStateManager)
@@ -29,6 +27,6 @@ public class GameState_GameComplete : IGameState
 
     public void ExitState(GameStateManager gameStateManager)
     {
-
+        gameStateManager.storeLastState();
     }
 }

@@ -4,117 +4,31 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 // Sam Robichaud 
-// NSCC Truro 2024
+// NSCC Truro 2022
 
-public class GameManager : MonoBehaviour
+public class GameManager_Backup : MonoBehaviour
 {
-    public GameObject ball;
-    public GameObject aimGuide;
-
-    [Header("Level Info")]
-    public int shotsLeft = 99;    
-
-    [Header("Script References")]
-    public GameStateManager _gameStateManager;
-    public BallManager _ballManager;
-    public LevelManager _levelManager;
-    public UIManager _uIManager;
-    public MouseOrbitImproved _cameraOrbit;
-
-    [Header("References that need to update on scene change")]
-    public LevelInfo _levelInfo;
-    public GameObject startPosition;
-
- 
-
-
-
-    void Awake()
-    {    
-        _gameStateManager = GetComponent<GameStateManager>();
-        _ballManager =  GetComponentInChildren<BallManager>(true);
-        _levelManager = GetComponentInChildren<LevelManager>(true);
-        _uIManager = GetComponentInChildren<UIManager>(true);  
-    }
-
-    void Start()
-    {
-        
-    }
-
-    public void StartGame()
-    {
-        _levelManager.LoadNextlevel();
-        _gameStateManager.SwitchToState(_gameStateManager.gameState_Aim);
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    { 
-        int LevelCount = SceneManager.GetActiveScene().buildIndex;        
-        Debug.Log("Scene Loaded: " + scene.name + " Build Index: " + scene.buildIndex);
-
-        if(scene.buildIndex > 0)
-        {
-            // Get a reference to the level info Script for that level
-            _levelInfo = FindObjectOfType<LevelInfo>();
-
-            // Get the # shots(attempts) available for the level and update the UI
-            shotsLeft = _levelInfo.ShotsToComplete;
-            _uIManager.UpdateShotsleft(shotsLeft);
-
-            // find the start position for the level and move the ball to that position
-            startPosition = GameObject.FindWithTag("StartPos");
-            ResetBallPos();
-
-            // Update the current level # on the UI
-            _uIManager.UpdateLevelCount(LevelCount);
-        }
-        else if (scene.buildIndex == 0)
-        {
-            Debug.Log("Main Menu Scene Loaded");
-        }
-
-        // (Unsuscribe) Stop listening for sceneLoaded event
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    public void ResetBallPos()  // move to be handled by the BallManager Script
-    {
-        ball.transform.position = startPosition.transform.position;
-        _ballManager.StopBall();
-        _cameraOrbit.GetComponent<MouseOrbitImproved>().ResetCamera();
-    }
-
-
-
-
-
-
-
-
-    /*
-    
-    _levelManager = levelManager.GetComponent<LevelManager>();
-        _uIManager = uIManager.GetComponent<UIManager>(); // this seems clunky, 2 references just to get a refernce to one script....
-        startPosition = GameObject.FindWithTag("StartPos");
-     
-      
-     
     public GameObject cameraOrbit;
+    public GameObject aimGuideMesh;
+    public GameObject ball;
+
+    //public GameObject MainMenuUI;
+    //public GameObject GamePlayUI;
+    //public GameObject LevelCompleteUI;
+    //public GameObject LevelFailUI;
+    //public GameObject GameCompleteUI;
+    //public GameObject PauseMenuUI;
     
-    public GameObject BallGroup;
-    
+    public GameObject BallGroup;    
 
+    public GameObject levelManager;
+    public GameObject uIManager;
 
-    //public GameObject levelManager;
-    //public GameObject uIManager;
-
-    private BallController _ballController;
+    private BallManager _ballController;
     private LevelManager _levelManager;
     private UIManager _uIManager;
 
-    
+    private int shotsLeft = 99;
 
     private GameObject LevelInfo;
     private LevelInfo _levelInfo;
@@ -126,30 +40,22 @@ public class GameManager : MonoBehaviour
     public float BallStopCheckTime;
     public float BallStopDelayTime;
 
-    
+    public GameObject startPosition;
 
-    
-    */
+    public enum GameState { MainMenu, Aim, Rolling, LoseCheck, LevelComplete, Paused }
 
-    //public enum GameState { MainMenu, Aim, Rolling, LoseCheck, LevelComplete, Paused }
-
-    //private GameState gameState;
-    //private GameState LastGameState;
+    private GameState gameState;
+    private GameState LastGameState;
 
     // Start is called before the first frame update
-
-
-
-
-
-
-
-
-
-
-
-
-    /*
+    void Start()
+    {
+        _ballController = ball.GetComponent<BallManager>();
+        _levelManager = levelManager.GetComponent<LevelManager>();
+        _uIManager = uIManager.GetComponent<UIManager>(); // this seems clunky, 2 references just to get a refernce to one script....
+        startPosition = GameObject.FindWithTag("StartPos");
+        cameraOrbit.GetComponent<MouseOrbitImproved>().enabled = false;
+    }
 
     // Update is called once per frame
     void Update()
@@ -174,7 +80,7 @@ public class GameManager : MonoBehaviour
             case GameState.Aim:
                 cameraOrbit.GetComponent<MouseOrbitImproved>().enabled = true;
 
-                _uIManager.UIAim();
+                //_uIManager.UIAim();
                 //MainMenuUI.SetActive(false);
                 //GamePlayUI.SetActive(true);
                 //LevelCompleteUI.SetActive(false);
@@ -240,7 +146,7 @@ public class GameManager : MonoBehaviour
                     cameraOrbit.GetComponent<MouseOrbitImproved>().enabled = false;
                     aimGuideMesh.SetActive(false);
 
-                    _uIManager.UILose();
+                    //_uIManager.UILose();
                     //GamePlayUI.SetActive(false);
                     //LevelFailUI.SetActive(true);
                 }
@@ -302,13 +208,38 @@ public class GameManager : MonoBehaviour
 
 
 
+    public void StartGame()
+    {
+        _levelManager.LoadNextlevel();        
+        BallGroup.SetActive(true);
+        gameState = GameState.Aim;
+    }
 
+    public void ResetBallPos()
+    {
+        ball.transform.position = startPosition.transform.position;
+        _ballController.StopBall();
+        cameraOrbit.GetComponent<MouseOrbitImproved>().ResetCamera();
+    }
 
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        LevelInfo = GameObject.FindWithTag("LevelInfo");
+        _levelInfo = LevelInfo.GetComponent<LevelInfo>();
+        shotsLeft = _levelInfo.ShotsToComplete;
 
+        startPosition = GameObject.FindWithTag("StartPos");
+        ResetBallPos();
+        _uIManager.UpdateShotsleft(shotsLeft);
 
-    
+        int LevelCount = SceneManager.GetActiveScene().buildIndex;        
+        _uIManager.UpdateLevelCount(LevelCount);
+    }
 
-
+    public void GoalReached()
+    {
+        gameState = GameState.LevelComplete;        
+    }
 
     public void loadNextLevel()
     {
@@ -365,15 +296,13 @@ public class GameManager : MonoBehaviour
     {
         cameraOrbit.GetComponent<MouseOrbitImproved>().enabled = true;
 
-        _uIManager.UIAim(); 
+        //_uIManager.UIAim(); 
         //PauseMenuUI.SetActive(false);
 
         Time.timeScale = 1f;
         gameState = LastGameState;
     }
-
-    */
-
+    
 
 
 

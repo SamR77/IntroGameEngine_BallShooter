@@ -19,7 +19,8 @@ public class GoalTrigger : MonoBehaviour
     }   
 
     private void OnTriggerEnter(Collider other)
-    {        
-        _gameManager.GoalReached();
+    {
+        Debug.Log("Level Goal Reached!");
+        //_gameManager.GoalReached();
     }
 }

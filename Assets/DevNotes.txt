@@ -16,7 +16,7 @@ NSCC Truro 2022
 
 
 ══════ TODO: Nice to Have / Low Priority ══════
-
+• Find a nicer ball mesh & texture
 • Switch to using New Input System
 • Update aiming guide, new visual and remove stuttering
 • Add celebration VFX for end of level
