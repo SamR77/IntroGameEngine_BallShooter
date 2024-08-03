@@ -18,6 +18,6 @@ public class GameState_MainMenu : IGameState
     public void ExitState(GameStateManager gameStateManager) 
     {
         gameStateManager.storeLastState();
-        gameStateManager._uIManager.DisableAllUIPanels();   
+        //gameStateManager._uIManager.DisableAllUIPanels();   
     }
 }

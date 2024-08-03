@@ -9,12 +9,16 @@ public class GameState_Rolling : IGameState
     public void EnterState(GameStateManager gameStateManager)
     {
         // maybe wrap the next 2 in an if statement to check if the last state was paused so we can set everyting back to whats needed for this state.
-        gameStateManager._uIManager.UIGamePlay();
-        gameStateManager._cameraOrbit.enabled = true;
         
+        gameStateManager._ballManager.aimGuide.SetActive(false);    // AimGuide should already be deactivated coming into this state, this is just a redundancy
+        gameStateManager._cameraOrbit.enabled = true;               // cameraOrbit should should already be already be active coming into this state, this is just a redundancy
+        gameStateManager._uIManager.UIGamePlay();                   // shares same UI as AimState, should already be active coming into this state, this is just a redundancy
+        
+        gameStateManager._uIManager.modeText.text = "Wait for ball to stop";
 
-        gameStateManager._ballManager.aimGuide.SetActive(false);
-        gameStateManager._uIManager.modeText.text = "Wait for ball to stop";        
+        // Start the coroutine to check if the ball has stopped after a delay
+        gameStateManager._ballManager.StartCoroutine(gameStateManager._ballManager.CheckBallStoppedAfterDelay());
+
     }
 
     public void FixedUpdateState(GameStateManager gameStateManager)

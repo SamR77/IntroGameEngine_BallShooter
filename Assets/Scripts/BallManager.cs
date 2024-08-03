@@ -11,18 +11,21 @@ public class BallManager : MonoBehaviour
     public Rigidbody rb_ball;
     public GameObject aimGuide;
 
+    [Header("Script References")]
+    public UIManager _uIManager;
+    public GameManager _gameManager;
+
+
     public bool ballStopped;
     public float ballMagnitudeStopThreshold = 0.1f; // Adjust this value as needed
     public float ballStopCheckDelay = 0.5f; // Adjust this value as needed
 
     [SerializeField,Header("Debug Output (read only)")]    
-    private float ballVelocityMagnitude; 
+    private float ballVelocityMagnitude;
 
-    // Start is called before the first frame update
-    void Awake()
+    private void Start()
     {
-        //rb_ball = GetComponent<Rigidbody>(); 
-        //aimGuide = GetComponent<>();
+        ballStopped = true; // the ball should be stopped at the start of the game
     }
 
     // Update is called once per frame
@@ -34,15 +37,23 @@ public class BallManager : MonoBehaviour
 
     public void ballShoot() // adds force to ball in a direction away from camera
     {
-        aimGuide.SetActive(false); // hide the aim guide
-        
+        _gameManager.shotsLeft -= 1;
+        _uIManager.UpdateShotsleft(_gameManager.shotsLeft);
+
+        ballStopped = false; // the ball should be moving at this point
         rb_ball.AddForce(aimGuide.transform.forward * 25, ForceMode.VelocityChange);
 
-        // Start the coroutine to check if the ball has stopped after a delay
-        StartCoroutine(CheckBallStoppedAfterDelay());
+ 
+
+        //aimGuide.SetActive(false); // hide the aim guide
+
+
+
+        
+
 
     }
-    private IEnumerator CheckBallStoppedAfterDelay()
+    public IEnumerator CheckBallStoppedAfterDelay()
     {
         // Wait for the specified delay
         yield return new WaitForSeconds(ballStopCheckDelay);

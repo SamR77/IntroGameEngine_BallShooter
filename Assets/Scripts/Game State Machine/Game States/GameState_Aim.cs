@@ -28,10 +28,6 @@ public class GameState_Aim : IGameState
         if(Input.GetKeyDown(KeyCode.Space))
         {
             gameStateManager._ballManager.ballShoot();
-            
-            gameStateManager._gameManager.shotsLeft -= 1;                                           // << move to ballShoot method in ballManager
-            gameStateManager._uIManager.UpdateShotsleft(gameStateManager._gameManager.shotsLeft);   // << move to ballShoot method in ballManager
-
             gameStateManager.SwitchToState(gameStateManager.gameState_Rolling);
         }
         
@@ -48,9 +44,7 @@ public class GameState_Aim : IGameState
 
     public void ExitState(GameStateManager gameStateManager)
     {
-        gameStateManager._ballManager.aimGuide.SetActive(false);
-        
-        gameStateManager.storeLastState();        
-        
+        gameStateManager._ballManager.aimGuide.SetActive(false);        
+        gameStateManager.storeLastState();     
     }
 }

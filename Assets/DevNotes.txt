@@ -30,7 +30,8 @@ NSCC Truro 2022
 
 ════ COMPLETED ═════
 
-• July/31/2024: 
+• August/02/2024: Corrected bug with the rolling state, along with a few more corrections to the overall State Machine refactor.
+• August/02/2024: Started State Machine refactor... some bugs to resolve. 
 • July/31/2024: Changed DevNotes to .txt instead of .cs
 • July/31/2024: Created basic script structure for Updated State Machine
 • Pre 2024: Title Screen

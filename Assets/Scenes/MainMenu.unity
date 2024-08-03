@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &22447684
 RectTransform:
   m_ObjectHideFlags: 0
@@ -38435,7 +38435,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb_ball: {fileID: 1518217335}
   aimGuide: {fileID: 838156708}
-  ballStopped: 0
+  _uIManager: {fileID: 728445803}
+  _gameManager: {fileID: 2078915203}
+  ballStopped: 1
   ballMagnitudeStopThreshold: 0.1
   ballStopCheckDelay: 0.5
   ballVelocityMagnitude: 0
@@ -58178,7 +58180,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4578785522420827839
 RectTransform:
   m_ObjectHideFlags: 0
