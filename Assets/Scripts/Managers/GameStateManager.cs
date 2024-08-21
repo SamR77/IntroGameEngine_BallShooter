@@ -13,17 +13,16 @@ public class GameStateManager : MonoBehaviour
     public UIManager _uIManager;
     public LevelManager _levelManager;
     public GameManager _gameManager;
-    public MouseOrbitImproved _cameraOrbit;
+    //public MouseOrbitImproved _cameraOrbit;
     public BallManager _ballManager;
+    public CameraManager _cameraManager;
+
+
 
     //private variables
     private IGameState currentGameState;
 
-
-    public IGameState lastGameState;
-
-
-
+    public IGameState lastGameState;   
 
 
     public GameState_GameInit gameState_GameInit = new GameState_GameInit();
@@ -31,7 +30,6 @@ public class GameStateManager : MonoBehaviour
     public GameState_Aim gameState_Aim = new GameState_Aim();
     public GameState_Rolling gameState_Rolling = new GameState_Rolling();
     public GameState_LevelComplete gameState_LevelComplete = new GameState_LevelComplete();
-    public GameState_GameComplete gameState_GameComplete = new GameState_GameComplete();
     public GameState_LevelFailed gameState_LevelFailed = new GameState_LevelFailed();
     public GameState_Paused gameState_Paused = new GameState_Paused();
 
@@ -43,8 +41,8 @@ public class GameStateManager : MonoBehaviour
         _uIManager = GetComponentInChildren<UIManager>(true);
         _levelManager = GetComponentInChildren<LevelManager>(true);
         _gameManager = GetComponentInChildren<GameManager>(true);
-        _cameraOrbit = GetComponentInChildren<MouseOrbitImproved>(true);
         _ballManager = GetComponentInChildren<BallManager>(true);
+        _cameraManager = GetComponentInChildren<CameraManager>(true);
 
         currentGameState = gameState_GameInit;
     }
@@ -54,8 +52,8 @@ public class GameStateManager : MonoBehaviour
     private void Update()
     {
         currentGameState.UpdateState(this);
-        currentActiveState = currentGameState.ToString();   // display in inspector for debugging
-        lastActiveState = lastGameState.ToString();         // display in inspector for debugging
+        currentActiveState = currentGameState.ToString();   // display in inspector for debugging purposes
+        lastActiveState = lastGameState.ToString();         // display in inspector for debugging purposes
     }
 
     private void LateUpdate()   {   currentGameState.LateUpdateState(this);     }

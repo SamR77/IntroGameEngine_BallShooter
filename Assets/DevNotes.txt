@@ -1,36 +1,42 @@
 ﻿
 Sam Robichaud 
-NSCC Truro 2022
-
+NSCC Truro 2024
+This work is licensed under CC BY-NC-SA 4.0 (https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 ═════ TODO: High Priority ══════
 
-• Refactor to a cleaner State Machine (Significant Revision)
-
-• Fix camera collision: 
-	- Option 1: Change to Cinemachine Camera System < - Likely the better fix
-	- Alternative A: https://www.youtube.com/watch?v=mZXYSihSl3I
-	- Alternative B: https://www.youtube.com/watch?v=mZXYSihSl3I
-
-• Remove mouse cursor from gameplay state
+• Bugfix: At level Start or ball reset the camera should start facing the direction of the start postion.
+• Bugfix: Remove mouse cursor from gameplay state.
+• Bugfix: Investigate stuttering of AimGuide.
 
 
-══════ TODO: Nice to Have / Low Priority ══════
-• Find a nicer ball mesh & texture
-• Switch to using New Input System
-• Update aiming guide, new visual and remove stuttering
-• Add celebration VFX for end of level
-• Look at which UI panels could be combined together and dynamically change content (Ex: Might be possible to use the same UIPanel for level Complete, Level Failed & Game Complete)
-• Expand Ball Control, player can modify how much power to apply to ball shot
-• Switch to using New Input System
-• Add Background Music
-• Add SFX support for game events (add public slots to allow player to swap out SFX)
-• Add Prefabs for gameplay mechanics (Ex: Boost pad, Jump Pad, Slow pad, Destruction etc)
+
+═════ TODO: Mid Priority ══════
+
+• Improvement: Seperate out GameStateManager into its own object in the GamePrefab, makes easier to parse and find it.
+• QOL: Update visual for Gizmo of StartPostion so its easier for level designer to see facing.
+• Improvement: Look at which UI panels could be combined together and dynamically change content (Ex: Might be possible to use the same UIPanel for level Complete, Level Failed & Game Complete).
+• QOL: Switch to using New Input System, allows for simpler switching between different input devices, Gamepad vs Keyboard/Mouse
+
+══════ TODO: Low Priority (Nice to Have) ══════
+
+• Improvement: adjust MainMenu Ball Spawner Sequence. When the level first loads the initial ball spawn above the play sequence and cast shadows as they fall. Extend the ramp and have ball spawn further up the ramp so the shadows do not appear until the balls are in view.
+• Improvement: Update aiming guide visual.
+• Improvement: Add celebration sequence for end of level (VFX, Anim, SFX).
+• Improvement: Add Trail effect when the ball is rolling ball.
+• Improvement: Find a nicer ball mesh & texture.
+• Improvement: Expand Ball Control, player can modify how much power to apply to ball shot.
+• Improvement: Add Background Music.
+• Improvement: Add SFX support for game events (add public slots to allow player to swap out SFX).
+• Improvement: Add Prefabs for gameplay mechanics (Ex: Boost pad, Jump Pad, Slow pad, Destruction etc).
 
 
 ════ COMPLETED ═════
 
-• August/02/2024: Corrected bug with the rolling state, along with a few more corrections to the overall State Machine refactor.
+• August/21/2024: Refactor to a cleaner State Machine (Significant Revision).
+• August/21/2024: Bugfix: LevelManager "LoadNextLevel()" to use total scene count instead of hard coded value.
+• August/20/2024:Fix camera collision - Changed to use Cinemachine Camera System.
+• August/02/2024: Corrected bugs with the rolling state, along with a few more corrections to the overall State Machine refactor.
 • August/02/2024: Started State Machine refactor... some bugs to resolve. 
 • July/31/2024: Changed DevNotes to .txt instead of .cs
 • July/31/2024: Created basic script structure for Updated State Machine

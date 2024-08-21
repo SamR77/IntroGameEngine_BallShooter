@@ -6,7 +6,7 @@ public class GameState_GameComplete : IGameState
 {
     public void EnterState(GameStateManager gameStateManager)
     {
-
+        gameStateManager._cameraManager.LockCameraRotation();
     }
 
     public void FixedUpdateState(GameStateManager gameStateManager)
@@ -28,5 +28,6 @@ public class GameState_GameComplete : IGameState
     public void ExitState(GameStateManager gameStateManager)
     {
         gameStateManager.storeLastState();
+        gameStateManager._cameraManager.UnlockCameraRotation();
     }
 }

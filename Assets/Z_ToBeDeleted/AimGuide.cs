@@ -8,15 +8,6 @@ using UnityEngine;
 public class AimGuide : MonoBehaviour
 {
     public GameObject ball;
-    //public GameObject meshHandler;
-
-    private BallManager _ballController;
-
-    private void Start()
-    {
-        _ballController = ball.GetComponent<BallManager>();
-    }
-    
 
     void LateUpdate()
     {

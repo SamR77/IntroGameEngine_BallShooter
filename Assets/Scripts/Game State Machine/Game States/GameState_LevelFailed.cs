@@ -11,7 +11,10 @@ public class GameState_LevelFailed : IGameState
     public void EnterState(GameStateManager gameStateManager)
     {
         gameStateManager._uIManager.UILevelFailed();
-        gameStateManager._cameraOrbit.enabled = false;
+
+        gameStateManager._cameraManager.LockCameraRotation();
+
+        //gameStateManager._cameraOrbit.enabled = false;
     }
 
     public void FixedUpdateState(GameStateManager gameStateManager)
@@ -34,5 +37,6 @@ public class GameState_LevelFailed : IGameState
     public void ExitState(GameStateManager gameStateManager)
     {
         gameStateManager.storeLastState();
+        gameStateManager._cameraManager.UnlockCameraRotation();
     }
 }

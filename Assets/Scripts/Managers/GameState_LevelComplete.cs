@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameState_LevelComplete : IGameState
 {
@@ -11,6 +12,19 @@ public class GameState_LevelComplete : IGameState
     public void EnterState(GameStateManager gameStateManager)
     {
 
+        // check to see if this is the last level CheckWin() in GameManager
+        // if last level then set UI For GameComplete
+        // if NOT LAST level then Set UI for LevelComplete
+
+        if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 1)
+        {
+            gameStateManager._uIManager.UIGameComplete();
+        }
+        else
+        {
+            gameStateManager._uIManager.UILevelComplete();
+        }
+        gameStateManager._cameraManager.LockCameraRotation();
     }
 
     public void FixedUpdateState(GameStateManager gameStateManager)
@@ -32,6 +46,6 @@ public class GameState_LevelComplete : IGameState
 
     public void ExitState(GameStateManager gameStateManager)
     {
-        
+        gameStateManager._cameraManager.UnlockCameraRotation();
     }
 }

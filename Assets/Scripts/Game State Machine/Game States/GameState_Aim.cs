@@ -9,13 +9,12 @@ public class GameState_Aim : IGameState
     {
         gameStateManager._uIManager.UIGamePlay(); 
         
-        gameStateManager._gameManager.aimGuide.SetActive(true);
-        gameStateManager._cameraOrbit.enabled = true;
+        gameStateManager._ballManager.aimGuide.SetActive(true);
+        gameStateManager._gameManager.ball.SetActive(true);  // this should be handled by the ballManager, may be issues because this script is directly on the ball... might want to seperate the mesh so we can turn it off and on without affecting the ball itself
 
-        gameStateManager._gameManager.ball.SetActive(true);
+        gameStateManager._cameraManager.UseGameplayCamera();             
 
-        gameStateManager._uIManager.modeText.text = "Aim with MOUSE \n & \n Shoot with SPACE";
-        // Although this is just one line.. I think it's better practice to move this to the ballManager that way if there is any later changes to enabling/disabling the ball, it's all in one place
+        gameStateManager._uIManager.modeText.text = "Aim with MOUSE \n & \n Shoot with SPACE";     
     }
 
     public void FixedUpdateState(GameStateManager gameStateManager)
@@ -39,7 +38,8 @@ public class GameState_Aim : IGameState
 
     public void LateUpdateState(GameStateManager gameStateManager)
     {
-        // call mouse orbit method in here rather than on itself... this means we don't have to worry about turning the script off in other states, it just wont be called
+        // set aimGuide to match position of the ball
+        gameStateManager._ballManager.HandleAimGuide();
     }
 
     public void ExitState(GameStateManager gameStateManager)
@@ -47,4 +47,16 @@ public class GameState_Aim : IGameState
         gameStateManager._ballManager.aimGuide.SetActive(false);        
         gameStateManager.storeLastState();     
     }
+
+
+    public GameObject ball;
+
+
+
+
+
+
+
+
+
 }

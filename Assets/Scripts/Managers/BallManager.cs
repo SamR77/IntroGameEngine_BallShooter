@@ -14,13 +14,14 @@ public class BallManager : MonoBehaviour
     [Header("Script References")]
     public UIManager _uIManager;
     public GameManager _gameManager;
+    public GameStateManager _gameStateManager;
 
 
     public bool ballStopped;
     public float ballMagnitudeStopThreshold = 0.1f; // Adjust this value as needed
     public float ballStopCheckDelay = 0.5f; // Adjust this value as needed
 
-    [SerializeField,Header("Debug Output (read only)")]    
+    [SerializeField, Header("Debug Output (read only)")]
     private float ballVelocityMagnitude;
 
     private void Start()
@@ -28,7 +29,7 @@ public class BallManager : MonoBehaviour
         ballStopped = true; // the ball should be stopped at the start of the game
     }
 
-    // Update is called once per frame
+ 
     void Update()
     {
         // spits out the ball vector magnitude for debugging    
@@ -42,17 +43,8 @@ public class BallManager : MonoBehaviour
 
         ballStopped = false; // the ball should be moving at this point
         rb_ball.AddForce(aimGuide.transform.forward * 25, ForceMode.VelocityChange);
-
- 
-
-        //aimGuide.SetActive(false); // hide the aim guide
-
-
-
-        
-
-
     }
+
     public IEnumerator CheckBallStoppedAfterDelay()
     {
         // Wait for the specified delay
@@ -72,9 +64,53 @@ public class BallManager : MonoBehaviour
         }
     }
 
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "GoalTrigger")
+        {
+            Debug.Log("Goal Reached");
+            _gameStateManager.SwitchToState(_gameManager._gameStateManager.gameState_LevelComplete);
+            return;
+        }
+
+        else if (other.gameObject.tag == "ResetTrigger") 
+        {
+            SetBallToStartPosition();
+        }
+    }
+
+    public void HandleAimGuide()
+    {        
+        // match location of aim guide to ball
+        aimGuide.transform.position = rb_ball.transform.position;
+
+        // Rotates aim guide around ball to match camera rotation
+        Vector3 newRot = aimGuide.transform.eulerAngles;
+        newRot.y = (Camera.main.transform.eulerAngles.y);
+        aimGuide.transform.eulerAngles = newRot;
+    }
+
+    public void SetBallToStartPosition()
+    {
+        // Find Start Position object in current scene
+        Transform startPosition = GameObject.FindWithTag("BallStartPosition").transform;
+
+        StopBall(); // Stop the ball   
+        rb_ball.transform.position = startPosition.transform.position;
+        rb_ball.transform.rotation = startPosition.transform.rotation;
+    }
+
+    
     public void StopBall() //immediately halts the ball movement
     {
         rb_ball.isKinematic = true;
         rb_ball.isKinematic = false;
     }
+    
+
+
+
+
 }

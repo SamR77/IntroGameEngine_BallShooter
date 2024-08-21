@@ -273,7 +273,7 @@ public class GameManager_Backup : MonoBehaviour
         //PauseMenuUI.SetActive(false);
 
         Time.timeScale = 1f;
-        _levelManager.LoadMainMenu();
+        _levelManager.LoadMainMenuScene();
         gameState = GameState.MainMenu;
         ResetBallPos();
         Camera.main.transform.SetPositionAndRotation(new Vector3(-0.7f,10f,11f), Quaternion.Euler(new Vector3(45, -180, 0)));

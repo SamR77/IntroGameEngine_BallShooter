@@ -5,22 +5,22 @@ using UnityEngine;
 // Sam Robichaud 
 // NSCC Truro 2022
 
-public class GoalTrigger : MonoBehaviour
-{    
+public class Catcher : MonoBehaviour
+{
     private GameObject gameManager;
     private GameManager _gameManager;
-       
+
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.FindWithTag("GameController");
         _gameManager = gameManager.GetComponent<GameManager>();
-    }   
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("Level Goal Reached!");
-        //_gameManager.GoalReached();
     }
+
+
+
+
+
+
 }

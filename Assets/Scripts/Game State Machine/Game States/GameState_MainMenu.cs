@@ -6,10 +6,7 @@ public class GameState_MainMenu : IGameState
     {
         gameStateManager._uIManager.UIMainMenu();
 
-        if(gameStateManager._cameraOrbit.enabled == true)
-        {
-            Debug.LogError("CameraOrbit should not be enabled...");            
-        }
+        gameStateManager._cameraManager.UseMainMenuCamera();     
     }
 
     public void FixedUpdateState(GameStateManager gameStateManager) { }

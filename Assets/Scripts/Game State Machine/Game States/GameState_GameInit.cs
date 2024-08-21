@@ -12,19 +12,11 @@ public class GameState_GameInit : IGameState
 
     public void EnterState(GameStateManager gameStateManager)
     {
-        // This should be expanded to check if there are any missing or null references and report them back.
-
-
-        // Set any default game settings here...
-        // Variable01 = XX;
-        // Variable02 = YY;
-
-        // Enable Camera Mouse Orbit Script
-        gameStateManager._cameraOrbit.enabled = true;
+        gameStateManager._cameraManager.UseMainMenuCamera();
 
         // Enable Ball & AimGuide
-        gameStateManager._gameManager.ball.SetActive(true);
-        gameStateManager._gameManager.aimGuide.SetActive(true);
+        gameStateManager._gameManager.ball.SetActive(true);         // TODO: switch to be referencing the ball manager
+        gameStateManager._gameManager.aimGuide.SetActive(true);     // TODO: switch to be referencing the ball manager
 
         // Enable all UI Panels
         gameStateManager._uIManager.gamePlayUI.SetActive(true);
@@ -51,7 +43,7 @@ public class GameState_GameInit : IGameState
         gameStateManager.storeLastState();
 
         // Turn off all but required Gameobjects & scripts
-        gameStateManager._cameraOrbit.enabled = false;
+        //gameStateManager._cameraOrbit.enabled = false;
 
         // Disable Ball & AimGuide
         gameStateManager._gameManager.ball.SetActive(false);

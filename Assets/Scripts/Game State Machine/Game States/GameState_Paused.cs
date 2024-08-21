@@ -8,8 +8,14 @@ public class GameState_Paused : IGameState
     public void EnterState(GameStateManager gameStateManager)
     {
         Time.timeScale = 0f;
-        gameStateManager._cameraOrbit.enabled = false;
+
+        // starting to remove old cameraOrbit script
+        // gameStateManager._cameraOrbit.enabled = false;
+        // need a function to stop accepting input for Virtual Camera
+
         gameStateManager._uIManager.UIPaused();
+        gameStateManager._cameraManager.LockCameraRotation();
+
     }
 
     public void FixedUpdateState(GameStateManager gameStateManager)
@@ -55,5 +61,6 @@ public class GameState_Paused : IGameState
     {
         gameStateManager.storeLastState();
         Time.timeScale = 1f;
+        gameStateManager._cameraManager.UnlockCameraRotation();
     }
 }

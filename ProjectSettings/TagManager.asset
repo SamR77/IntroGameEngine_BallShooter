@@ -5,9 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ball
-  - Goal
-  - StartPos
   - LevelInfo
+  - GoalTrigger
+  - ResetTrigger
+  - BallStartPosition
   layers:
   - Default
   - TransparentFX
