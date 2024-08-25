@@ -2,31 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
-using static GameManager_Backup;
+
 
 public class GameState_Rolling : IGameState
 {
     public void EnterState(GameStateManager gameStateManager)
     {
+        Cursor.visible = false;
+
         // maybe wrap the next 2 in an if statement to check if the last state was paused so we can set everyting back to whats needed for this state.        
         gameStateManager._ballManager.aimGuide.SetActive(false);    // AimGuide should already be deactivated coming into this state, this is just a redundancy
 
         //Redundancies
         gameStateManager._cameraManager.UseGameplayCamera();        // cameraManager should already be set to gameplay camera coming into this state, this is just a redundancy
-        gameStateManager._cameraManager.UnlockCameraRotation();     // cameraRotation should already be unlocked coming into this state, this is just a redundancy
+        gameStateManager._cameraManager.EnableCameraRotation();     // cameraRotation should already be unlocked coming into this state, this is just a redundancy
         gameStateManager._uIManager.UIGamePlay();                   // shares same UI as AimState, should already be active coming into this state, this is just a redundancy
         
         gameStateManager._uIManager.modeText.text = "Wait for ball to stop";
 
         // Start the coroutine to check if the ball has stopped after a delay
         gameStateManager._ballManager.StartCoroutine(gameStateManager._ballManager.CheckBallStoppedAfterDelay());
-
     }
 
-    public void FixedUpdateState(GameStateManager gameStateManager)
-    {
-
-    }
+    public void FixedUpdateState(GameStateManager gameStateManager) { }
 
     public void UpdateState(GameStateManager gameStateManager)
     {
@@ -56,13 +54,7 @@ public class GameState_Rolling : IGameState
         }
     }
 
-    public void LateUpdateState(GameStateManager gameStateManager)
-    {
-        // call mouse orbit method in here rather than on itself... this means we don't have to worry about turning the script off in other states, it just wont be called
-    }
+    public void LateUpdateState(GameStateManager gameStateManager) { }
 
-    public void ExitState(GameStateManager gameStateManager)
-    {
-        gameStateManager.storeLastState();
-    }
+    public void ExitState(GameStateManager gameStateManager) { }
 }

@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 
 // Sam Robichaud 
-// NSCC Truro 2022
+// NSCC Truro 2024
+// This work is licensed under CC BY-NC-SA 4.0 (https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 public class BallManager : MonoBehaviour
 {
+    [Header("References")]
+    public GameObject ball;  // Ball Mesh?
     public Rigidbody rb_ball;
     public GameObject aimGuide;
 
@@ -15,6 +16,7 @@ public class BallManager : MonoBehaviour
     public UIManager _uIManager;
     public GameManager _gameManager;
     public GameStateManager _gameStateManager;
+    public CameraManager _cameraManager;
 
 
     public bool ballStopped;
@@ -23,6 +25,17 @@ public class BallManager : MonoBehaviour
 
     [SerializeField, Header("Debug Output (read only)")]
     private float ballVelocityMagnitude;
+
+    public void Awake()
+    {
+        // Check for missing script references
+        if (_uIManager == null) { Debug.LogError("UIManager is not assigned to BallManager in the Inspector!"); }
+        if (_gameManager == null) { Debug.LogError("GameManager is not assigned to BallManager in the Inspector!"); }
+        if (_gameStateManager == null) { Debug.LogError("GameStateManager is not assigned to BallManager in the Inspector!"); }
+        if (_cameraManager == null) { Debug.LogError("CameraManager is not assigned to BallManager in the Inspector!"); }
+    }
+
+
 
     private void Start()
     {
@@ -71,7 +84,7 @@ public class BallManager : MonoBehaviour
         if (other.gameObject.tag == "GoalTrigger")
         {
             Debug.Log("Goal Reached");
-            _gameStateManager.SwitchToState(_gameManager._gameStateManager.gameState_LevelComplete);
+            _gameStateManager.SwitchToState(_gameStateManager.gameState_LevelComplete);
             return;
         }
 
@@ -82,14 +95,16 @@ public class BallManager : MonoBehaviour
     }
 
     public void HandleAimGuide()
-    {        
-        // match location of aim guide to ball
-        aimGuide.transform.position = rb_ball.transform.position;
+    {
+        // Get the direction the camera is facing, constrained to the Y-axis only
+        Vector3 cameraForward = Camera.main.transform.forward;
+        cameraForward.y = 0;  // Ensure no vertical rotation is applied (Y-axis locked)
 
-        // Rotates aim guide around ball to match camera rotation
-        Vector3 newRot = aimGuide.transform.eulerAngles;
-        newRot.y = (Camera.main.transform.eulerAngles.y);
-        aimGuide.transform.eulerAngles = newRot;
+        // Calculate the new rotation that matches the camera's facing direction
+        Quaternion targetRotation = Quaternion.LookRotation(cameraForward);
+
+        // Smoothly interpolate between the current rotation and the target rotation
+        aimGuide.transform.rotation = Quaternion.Slerp(aimGuide.transform.rotation, targetRotation, Time.deltaTime * 50f);
     }
 
     public void SetBallToStartPosition()
@@ -102,15 +117,12 @@ public class BallManager : MonoBehaviour
         rb_ball.transform.rotation = startPosition.transform.rotation;
     }
 
-    
+
+
+
     public void StopBall() //immediately halts the ball movement
     {
         rb_ball.isKinematic = true;
         rb_ball.isKinematic = false;
     }
-    
-
-
-
-
 }

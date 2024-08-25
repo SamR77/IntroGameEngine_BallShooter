@@ -1,42 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 public class GameState_LevelFailed : IGameState
 {
     // Note: LevelCompleteState and LevelFailedState likly could be using the same UIPanel (UI_Results) 
     // we can use can then feed the data into the UI panel based on the state that is active
-    // This may require enabling/disbleing some buttons for different logic?
+    // This may require enabling/disabling some buttons for different logic?
 
     public void EnterState(GameStateManager gameStateManager)
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+
         gameStateManager._uIManager.UILevelFailed();
-
-        gameStateManager._cameraManager.LockCameraRotation();
-
-        //gameStateManager._cameraOrbit.enabled = false;
+        gameStateManager._cameraManager.DisableCameraRotation();
     }
 
-    public void FixedUpdateState(GameStateManager gameStateManager)
-    {
+    public void FixedUpdateState(GameStateManager gameStateManager) { }
 
-    }
+    public void UpdateState(GameStateManager gameStateManager) { }
 
-    public void UpdateState(GameStateManager gameStateManager)
-    {
-      // need logic for buttons...
-      // BUtton 01 Restart the level, reload the scene, logic should contained in the Level Manager
-      // Button 02 Return to main menu, again contained in the Level Manager
-    }
-
-    public void LateUpdateState(GameStateManager gameStateManager)
-    {
-
-    }
+    public void LateUpdateState(GameStateManager gameStateManager) { }
 
     public void ExitState(GameStateManager gameStateManager)
     {
-        gameStateManager.storeLastState();
-        gameStateManager._cameraManager.UnlockCameraRotation();
+        gameStateManager._cameraManager.EnableCameraRotation();
     }
 }

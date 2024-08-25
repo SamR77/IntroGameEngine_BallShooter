@@ -1,52 +1,36 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 // Sam Robichaud 
 // NSCC Truro 2024
+// This work is licensed under CC BY-NC-SA 4.0 (https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject ball;
-    public GameObject aimGuide;
+    // with the refactor GameManager Doesn't really manager anything anymore...
+    // it does hold the ShotsLeft varialble but thats it..
 
-    [Header("Level Info")]
-    public int shotsLeft = 99;    
+
+    [Header("Gameplay Info")]
+    public int shotsLeft = 0;
+
+    [Header("Per Level Info")]
+    public LevelInfo _levelInfo;
+    public GameObject startPosition;
+
 
     [Header("Script References")]
     public GameStateManager _gameStateManager;
     public BallManager _ballManager;
     public LevelManager _levelManager;
     public UIManager _uIManager;
-    public MouseOrbitImproved _cameraOrbit;
+    public CameraManager _cameraManager;
 
-    [Header("References that need to update on scene change")]
-    public LevelInfo _levelInfo;
-    public GameObject startPosition;
 
- 
+  
 
 
 
-    void Awake()
-    {    
-        _gameStateManager = GetComponent<GameStateManager>();
-        _ballManager =  GetComponentInChildren<BallManager>(true);
-        _levelManager = GetComponentInChildren<LevelManager>(true);
-        _uIManager = GetComponentInChildren<UIManager>(true);  
-    }
 
-    void Start()
-    {
-        
-    }
-
-    public void StartGame() // do I even need this? can I just call the LoadNextLevel() method in the LevelManager?    
-    {
-        _levelManager.LoadNextlevel();         
-    }
 
 
 }

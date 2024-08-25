@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3125402386587109673}
   - component: {fileID: 3125402386587109678}
   m_Layer: 0
-  m_Name: StartPosition
+  m_Name: BallSpawnPositionAndFacing
   m_TagString: BallStartPosition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

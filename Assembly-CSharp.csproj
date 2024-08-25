@@ -58,33 +58,24 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Z_ToBeDeleted\TEmp.cs" />
     <Compile Include="Assets\Scripts\Game State Machine\Game States\GameState_Aim.cs" />
-    <Compile Include="Assets\Z_ToBeDeleted\MouseOrbitImproved.cs" />
-    <Compile Include="Assets\Z_ToBeDeleted\Catcher.cs" />
-    <Compile Include="Assets\Scripts\Utilities\StartGizmo.cs" />
-    <Compile Include="Assets\Scripts\Managers\CameraManager.cs" />
-    <Compile Include="Assets\Scripts\Game State Machine\Game States\GameState_GameComplete.cs" />
-    <Compile Include="Assets\Z_ToBeDeleted\TEST_CameraController.cs" />
-    <Compile Include="Assets\Scripts\Managers\GameState_LevelComplete.cs" />
-    <Compile Include="Assets\Scripts\Game State Machine\Game States\GameState_Rolling.cs" />
-    <Compile Include="Assets\Scripts\Managers\BallManager.cs" />
-    <Compile Include="Assets\Z_ToBeDeleted\AimGuide.cs" />
-    <Compile Include="Assets\Z_ToBeDeleted\CinemachineFollowControls.cs" />
     <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
     <Compile Include="Assets\Scripts\Game State Machine\Game States\GameState_LevelFailed.cs" />
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\CameraManager.cs" />
     <Compile Include="Assets\Scripts\Utilities\MainMenuBallRespawner.cs" />
+    <Compile Include="Assets\Scripts\Game State Machine\Game States\GameState_LevelComplete.cs" />
     <Compile Include="Assets\Scripts\Game State Machine\Game States\GameState_Paused.cs" />
     <Compile Include="Assets\Scripts\Game State Machine\IGameState.cs" />
     <Compile Include="Assets\Scripts\Game State Machine\Game States\GameState_GameInit.cs" />
-    <Compile Include="Assets\Z_ToBeDeleted\GameManager_Backup.cs" />
     <Compile Include="Assets\Scripts\Managers\LevelManager.cs" />
-    <Compile Include="Assets\Z_ToBeDeleted\GoalTrigger.cs" />
+    <Compile Include="Assets\Scripts\Game State Machine\Game States\GameState_Rolling.cs" />
     <Compile Include="Assets\Scripts\Utilities\LevelInfo.cs" />
     <Compile Include="Assets\Scripts\Game State Machine\Game States\GameState_MainMenu.cs" />
+    <Compile Include="Assets\Scripts\Managers\BallManager.cs" />
     <Compile Include="Assets\Scripts\Utilities\Singleton.cs" />
     <Compile Include="Assets\Scripts\Managers\GameStateManager.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Gizmo_BallSpawnPositionAndFacing.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\DevNotes.txt" />
@@ -735,6 +726,9 @@
     <Reference Include="Unity.ProBuilder">
       <HintPath>Library\ScriptAssemblies\Unity.ProBuilder.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Advertisements">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.Advertisements.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
@@ -750,14 +744,14 @@
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
     <Reference Include="Analytics">
       <HintPath>Library\ScriptAssemblies\Analytics.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ProBuilder.AddOns.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.ProBuilder.AddOns.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
@@ -767,9 +761,6 @@
     </Reference>
     <Reference Include="Unity.ProBuilder.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.ProBuilder.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.Advertisements.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Services.Core.Environments">
       <HintPath>Library\ScriptAssemblies\Unity.Services.Core.Environments.dll</HintPath>
@@ -783,11 +774,11 @@
     <Reference Include="Unity.TextMeshPro">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Services.Core.Analytics">
-      <HintPath>Library\ScriptAssemblies\Unity.Services.Core.Analytics.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Services.Core.Analytics">
+      <HintPath>Library\ScriptAssemblies\Unity.Services.Core.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="Unity.AI.Navigation.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.AI.Navigation.Editor.dll</HintPath>

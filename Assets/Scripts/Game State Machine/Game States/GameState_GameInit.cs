@@ -1,8 +1,8 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.Analytics;
-using UnityEngine.ProBuilder.MeshOperations;
-using UnityEngine.SceneManagement;
+
+// Sam Robichaud 
+// NSCC Truro 2024
+// This work is licensed under CC BY-NC-SA 4.0 (https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 public class GameState_GameInit : IGameState
 {
@@ -12,11 +12,13 @@ public class GameState_GameInit : IGameState
 
     public void EnterState(GameStateManager gameStateManager)
     {
+        Cursor.visible = false;
+
         gameStateManager._cameraManager.UseMainMenuCamera();
 
         // Enable Ball & AimGuide
-        gameStateManager._gameManager.ball.SetActive(true);         // TODO: switch to be referencing the ball manager
-        gameStateManager._gameManager.aimGuide.SetActive(true);     // TODO: switch to be referencing the ball manager
+        gameStateManager._ballManager.ball.SetActive(true);         
+        gameStateManager._ballManager.aimGuide.SetActive(true);     
 
         // Enable all UI Panels
         gameStateManager._uIManager.gamePlayUI.SetActive(true);
@@ -28,10 +30,10 @@ public class GameState_GameInit : IGameState
 
         // Switch to MainMenu state
         gameStateManager.SwitchToState(new GameState_MainMenu());
+
+        // Need to set the correctCamera off
+
     }
-
-   
-
 
     public void FixedUpdateState(GameStateManager gameStateManager) { }
     public void UpdateState(GameStateManager gameStateManager) { }
@@ -40,14 +42,9 @@ public class GameState_GameInit : IGameState
 
     public void ExitState(GameStateManager gameStateManager) 
     {
-        gameStateManager.storeLastState();
-
-        // Turn off all but required Gameobjects & scripts
-        //gameStateManager._cameraOrbit.enabled = false;
-
         // Disable Ball & AimGuide
-        gameStateManager._gameManager.ball.SetActive(false);
-        gameStateManager._gameManager.aimGuide.SetActive(false);
+        gameStateManager._ballManager.ball.SetActive(false);
+        gameStateManager._ballManager.aimGuide.SetActive(false);
 
         // Disable all UI Panels
         gameStateManager._uIManager.DisableAllUIPanels();

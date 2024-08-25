@@ -1,35 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-using JetBrains.Annotations;
+
+// Sam Robichaud 
+// NSCC Truro 2024
+// This work is licensed under CC BY-NC-SA 4.0 (https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 public class CameraManager : MonoBehaviour
 {
     public GameObject VCamGameplay;
     public GameObject VCamMainMenu;
 
-    private CinemachineFreeLook CinemachineGameplayVcam;
+    public CinemachineBrain cinemachineBrain;
 
-    // I need to store these as I'm erasing the names to disable camera rotation
-    // sometimes the game can quit without having a change to restore the original names, and they are blank on play
-    // Ideally these would be read from the Input Manager, but that doesn't seem possible, so they are hardcoded for now
-    // May not be an issue when we move to the new input system
-    // I will also try to find a better way to Lock/Unlock the camera rotation than erasing the input axis names
-    private string originalXAxisName = "Mouse X";
-    private string originalYAxisName = "Mouse Y";
+    public CinemachineFreeLook freeLookCamera;
+    public Transform lookAtTarget;
 
-    private void Awake()
-    {
-        // get the free look camera component
-        CinemachineGameplayVcam = VCamGameplay.GetComponent<Cinemachine.CinemachineFreeLook>();
-
-        CinemachineGameplayVcam.m_XAxis.m_InputAxisName = originalXAxisName;
-        CinemachineGameplayVcam.m_YAxis.m_InputAxisName = originalYAxisName;
-
-    }
-
-
+    public Vector3 cameraOffset = new Vector3(0, 5, -10);
 
     public void UseMainMenuCamera()
     {
@@ -43,21 +29,13 @@ public class CameraManager : MonoBehaviour
         VCamMainMenu.SetActive(false);
     }
 
-    public void LockCameraRotation()
+    public void DisableCameraRotation()
     {
-        //CinemachineGameplayVcam.enabled = false;
+        VCamGameplay.SetActive(false); }
 
-    
-        CinemachineGameplayVcam.m_XAxis.m_InputAxisName = "";
-        CinemachineGameplayVcam.m_YAxis.m_InputAxisName = "";
-    }
-
-    public void UnlockCameraRotation()
+    public void EnableCameraRotation()
     {
-        //CinemachineGameplayVcam.enabled = true;
-
-        CinemachineGameplayVcam.m_XAxis.m_InputAxisName = originalXAxisName;
-        CinemachineGameplayVcam.m_YAxis.m_InputAxisName = originalYAxisName;
+        VCamGameplay.SetActive(true);
     }
 
     // set gameplay camera to a target orientation
@@ -67,6 +45,25 @@ public class CameraManager : MonoBehaviour
     }
 
 
+   
+    public void ResetCameraPosition()
+    {
+        // the camera repositioning is noticeable at level start.. this may only be happening in the editor... 
+        // Am attempt to hide it was done by disabling/enabling the CinemachineBrain component duyring repositioning but that dindt help.
+        // another possible solution is to darken the screen during level change and then have a quick fade in the camera after repositioning is done.
+
+
+        cinemachineBrain.enabled = false;// an attempt to hide the repositioning.    
+
+        var offset = freeLookCamera.LookAt.rotation * new Vector3(0, 0, -14);
+
+        freeLookCamera.ForceCameraPosition(freeLookCamera.LookAt.position + offset, freeLookCamera.LookAt.rotation);
+        freeLookCamera.m_YAxis.Value = 0.5f;
+
+        cinemachineBrain.enabled = true;// an attempt to hide the repositioning.
+
+
+    }
 
 
 
