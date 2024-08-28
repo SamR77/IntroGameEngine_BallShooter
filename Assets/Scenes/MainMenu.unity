@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44547832, g: 0.49514353, b: 0.5740752, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7787,7 +7786,7 @@ MonoBehaviour:
   m_TransparentLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_MinimumDistanceFromTarget: 1
+  m_MinimumDistanceFromTarget: 2
   m_AvoidObstacles: 1
   m_DistanceLimit: 0
   m_MinimumOcclusionTime: 0
@@ -7864,7 +7863,7 @@ MonoBehaviour:
   m_XAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 300
+    m_MaxSpeed: 150
     m_AccelTime: 0.2
     m_DecelTime: 0.1
     m_InputAxisName: Mouse X
@@ -15331,7 +15330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 4, z: -10}
+  m_FollowOffset: {x: 0, y: 5.587734, z: -11.97176}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -15882,7 +15881,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 838156709}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AimGuide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18521,7 +18520,7 @@ GameObject:
   - component: {fileID: 883856153}
   - component: {fileID: 883856152}
   - component: {fileID: 883856151}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21924,7 +21923,7 @@ GameObject:
   - component: {fileID: 951118447}
   - component: {fileID: 951118446}
   - component: {fileID: 951118445}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26741,7 +26740,7 @@ GameObject:
   - component: {fileID: 1008944598}
   - component: {fileID: 1008944600}
   - component: {fileID: 1008944599}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30917,7 +30916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 4, z: -10}
+  m_FollowOffset: {x: 0, y: 5.587734, z: -11.97176}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -33949,7 +33948,7 @@ GameObject:
   - component: {fileID: 1312205618}
   - component: {fileID: 1312205620}
   - component: {fileID: 1312205619}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BallManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37856,7 +37855,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1378527463}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AimGuideMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39099,7 +39098,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1518217337}
   - component: {fileID: 1518217336}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ball Mesh
   m_TagString: Ball
   m_Icon: {fileID: 0}
@@ -43257,7 +43256,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1642037050}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ball OBJ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54032,7 +54031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 4, z: -10}
+  m_FollowOffset: {x: 0, y: 5.587734, z: -11.97176}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
