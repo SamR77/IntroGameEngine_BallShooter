@@ -9,11 +9,12 @@ TagManager:
   - GoalTrigger
   - ResetTrigger
   - BallStartPosition
+  - Goal
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ball
   - Water
   - UI
   - 
