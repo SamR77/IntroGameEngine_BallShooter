@@ -7863,7 +7863,7 @@ MonoBehaviour:
   m_XAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 150
+    m_MaxSpeed: 500
     m_AccelTime: 0.2
     m_DecelTime: 0.1
     m_InputAxisName: Mouse X
@@ -32140,6 +32140,7 @@ Transform:
   m_Children:
   - {fileID: 326664847}
   - {fileID: 948475251}
+  - {fileID: 1482554301}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1212748103
@@ -38550,12 +38551,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1482554296}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1211868307}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1495364616
 GameObject:
@@ -61127,6 +61128,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 2078915204}
   - {fileID: 1211868307}
-  - {fileID: 1482554301}
   - {fileID: 282558646}
   - {fileID: 1006828327}
