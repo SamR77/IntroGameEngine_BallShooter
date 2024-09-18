@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+
+        // Contribution: Daniel Nascimento
         // If any of the managers are null, attempt to assign them with children of this object.
         _gameStateManager ??= GetComponentInChildren<GameStateManager>();
         _ballManager ??= GetComponentInChildren<BallManager>();

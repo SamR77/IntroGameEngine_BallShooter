@@ -15329,8 +15329,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9384ab8608cdc3d479fe89cd51eed48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 8, z: -14}
+  m_BindingMode: 5
+  m_FollowOffset: {x: 0, y: 7.999973, z: -13.99998}
   m_XDamping: 0
   m_YDamping: 0
   m_ZDamping: 0
@@ -30915,8 +30915,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9384ab8608cdc3d479fe89cd51eed48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 8, z: -14}
+  m_BindingMode: 5
+  m_FollowOffset: {x: 0, y: 7.999973, z: -13.99998}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -34041,7 +34041,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 3
 --- !u!43 &1314021404
@@ -54031,8 +54031,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9384ab8608cdc3d479fe89cd51eed48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 8, z: -14}
+  m_BindingMode: 5
+  m_FollowOffset: {x: 0, y: 7.999973, z: -13.99998}
   m_XDamping: 1
   m_YDamping: 0
   m_ZDamping: 0

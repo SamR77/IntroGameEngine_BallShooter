@@ -113,7 +113,9 @@ public class BallManager : MonoBehaviour
         StopBall(); // Stop the ball   
         rb_ball.position = startPosition.transform.position;
         rb_ball.rotation = startPosition.transform.rotation;
-        
+
+
+        // ** Bugfix by Daniel Nascimento **
         // When setting position and rotation in the rigidbody
         // it'll take effect during the physics update. So I believe
         // when cinemachine tries to get the rotation to adjust the camera
