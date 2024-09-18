@@ -74,13 +74,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Scene Loaded: " + scene.name + " Build Index: " + scene.buildIndex);
 
         if (scene.buildIndex > 0)
-        {
-            // Set the ball to the current level start position            
-            _ballManager.SetBallToStartPosition();
-
-            // Set the camera to the current level start position
-            _cameraManager.ResetCameraPosition();
-
+        {         
             // Get a reference to the level info Script for that level
             LevelInfo _levelInfo = FindObjectOfType<LevelInfo>();            
 
@@ -91,8 +85,14 @@ public class LevelManager : MonoBehaviour
             // Update the current level # on the UI
             _uIManager.UpdateLevelCount(LevelCount);
 
+            // Set the ball to the current level start position           
+            _ballManager.SetBallToStartPosition();
+            //Debug.Break();
 
+            // Set the camera to the current level start position
+            _cameraManager.ResetCameraPosition();
         }
+
         else if (scene.buildIndex == 0)
         {
             // Noting really needed here, buildIndex 0 = MainMenu scene,

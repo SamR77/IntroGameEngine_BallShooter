@@ -48,11 +48,8 @@ public class CameraManager : MonoBehaviour
    
     public void ResetCameraPosition()
     {
-        // the camera repositioning is noticeable at level start.. this may only be happening in the editor... 
-        // Am attempt to hide it was done by disabling/enabling the CinemachineBrain component duyring repositioning but that dindt help.
-        // another possible solution is to darken the screen during level change and then have a quick fade in the camera after repositioning is done.
-
-
+        Debug.Log("camera_reset");
+        
         cinemachineBrain.enabled = false;// an attempt to hide the repositioning.    
 
         var offset = freeLookCamera.LookAt.rotation * new Vector3(0, 0, -14);
@@ -61,10 +58,8 @@ public class CameraManager : MonoBehaviour
         freeLookCamera.m_YAxis.Value = 0.5f;
 
         cinemachineBrain.enabled = true;// an attempt to hide the repositioning.
-
+        
+        
 
     }
-
-
-
 }
