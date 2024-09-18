@@ -77,8 +77,6 @@ public class BallManager : MonoBehaviour
         }
     }
 
-
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "GoalTrigger")
@@ -113,6 +111,14 @@ public class BallManager : MonoBehaviour
         Transform startPosition = GameObject.FindWithTag("BallStartPosition").transform;
 
         StopBall(); // Stop the ball   
+        rb_ball.position = startPosition.transform.position;
+        rb_ball.rotation = startPosition.transform.rotation;
+        
+        // When setting position and rotation in the rigidbody
+        // it'll take effect during the physics update. So I believe
+        // when cinemachine tries to get the rotation to adjust the camera
+        // the rotation hasn't changed yet. So I'm setting it in the
+        // transform here as well.
         rb_ball.transform.position = startPosition.transform.position;
         rb_ball.transform.rotation = startPosition.transform.rotation;
     }
@@ -124,5 +130,8 @@ public class BallManager : MonoBehaviour
     {
         rb_ball.isKinematic = true;
         rb_ball.isKinematic = false;
+        // Also setting velocities to zero just in case.
+        rb_ball.velocity = Vector3.zero;
+        rb_ball.angularVelocity = Vector3.zero;
     }
 }
