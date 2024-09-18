@@ -25,8 +25,16 @@ public class GameManager : MonoBehaviour
     public UIManager _uIManager;
     public CameraManager _cameraManager;
 
+    private void Awake()
+    {
+        // If any of the managers are null, attempt to assign them with children of this object.
+        _gameStateManager ??= GetComponentInChildren<GameStateManager>();
+        _ballManager ??= GetComponentInChildren<BallManager>();
+        _levelManager ??= GetComponentInChildren<LevelManager>();
+        _uIManager ??= GetComponentInChildren<UIManager>();
+        _cameraManager ??= GetComponentInChildren<CameraManager>();
+    }
 
-  
 
 
 
