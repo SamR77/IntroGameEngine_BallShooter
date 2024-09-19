@@ -17,6 +17,8 @@ public class CameraManager : MonoBehaviour
 
     public Vector3 cameraOffset = new Vector3(0, 5, -10);
 
+
+
     public void UseMainMenuCamera()
     {
         VCamGameplay.SetActive(false);
@@ -50,16 +52,18 @@ public class CameraManager : MonoBehaviour
     {
         Debug.Log("camera_reset");
         
-        cinemachineBrain.enabled = false;// an attempt to hide the repositioning.    
+        //cinemachineBrain.enabled = false;// an attempt to hide the repositioning.    
 
         var offset = freeLookCamera.LookAt.rotation * new Vector3(0, 0, -14);
 
         freeLookCamera.ForceCameraPosition(freeLookCamera.LookAt.position + offset, freeLookCamera.LookAt.rotation);
         freeLookCamera.m_YAxis.Value = 0.5f;
 
-        cinemachineBrain.enabled = true;// an attempt to hide the repositioning.
-        
-        
-
+        //cinemachineBrain.enabled = true;// an attempt to hide the repositioning.  
     }
+
+
+
+
+
 }
