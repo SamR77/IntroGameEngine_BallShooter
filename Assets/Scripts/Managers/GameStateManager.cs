@@ -16,6 +16,7 @@ public class GameStateManager : MonoBehaviour
     public UIManager _uIManager;
     public BallManager _ballManager;
     public CameraManager _cameraManager;
+    public InputManager _inputManager;
 
     // Private variables to store state information
     private IGameState currentGameState;  // Current active state

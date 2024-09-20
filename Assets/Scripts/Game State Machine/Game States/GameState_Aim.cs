@@ -7,6 +7,9 @@ using UnityEngine;
 
 public class GameState_Aim : IGameState
 {
+   
+
+
     public void EnterState(GameStateManager gameStateManager)
     {
         Cursor.visible = false;
@@ -18,19 +21,23 @@ public class GameState_Aim : IGameState
         gameStateManager._cameraManager.UseGameplayCamera();
 
         gameStateManager._uIManager.modeText.text = "Aim with MOUSE \n & \n Shoot with SPACE";
+
+
+
+       
     }
 
     public void FixedUpdateState(GameStateManager gameStateManager) { }
 
     public void UpdateState(GameStateManager gameStateManager)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (gameStateManager._inputManager.shootBallTriggered)
         {
             gameStateManager._ballManager.ballShoot();
             gameStateManager.SwitchToState(gameStateManager.gameState_Rolling);
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (gameStateManager._inputManager.pauseTriggered)
         {
             gameStateManager.SwitchToState(gameStateManager.gameState_Paused);
         }
