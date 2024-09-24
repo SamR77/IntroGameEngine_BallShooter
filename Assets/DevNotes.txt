@@ -31,6 +31,7 @@ This work is licensed under CC BY-NC-SA 4.0 (https://creativecommons.org/license
 
 ════ COMPLETED ═════
 
+• Sept/24/2024: Bugfix: Corrected issue with UI Scaling Incorrectly at different aspect ratios [Bug found by Kyle Lirette]
 • Sept/18/2024: Bugfix: [Contributer: Daniel Nascimento] Corrected bug with Cinemachine Camera not matching position/orientation of the StartPosition Gizmo (See BallManager.cs for details).
 • August/24/2024: QOL: Updated visual of StartPostion Gizmo so its easier for level designer to see facing.
 • August/23/2024: Improvement: Seperated out GameStateManager into its own object in the GamePrefab to make it easier to find and manage in the scene hierarchy.
