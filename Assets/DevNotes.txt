@@ -9,8 +9,10 @@ This work is licensed under CC BY-NC-SA 4.0 (https://creativecommons.org/license
 
 ═════ TODO: Mid Priority ══════
 
+• QOL: Change all Trigger to handle their logic themselves, right now it's being handled by the ball manager, and it makes it harder for students to understand/modify.
 • QOL: Add Debug function to skip between levels, to make tesing levels easier.
 • QOL: Switch to using New Input System, allows for simpler switching between different input devices, Gamepad vs Keyboard/Mouse
+
 
 ══════ TODO: Low Priority (Nice to Have) ══════
 
