@@ -14,24 +14,25 @@ public class GameState_GameInit : IGameState
     {
         Cursor.visible = false;
 
-        gameStateManager._cameraManager.UseMainMenuCamera();
+        CameraManager.instance.UseMainMenuCamera();        
 
         // Enable Ball & AimGuide
-        gameStateManager._ballManager.ball.SetActive(true);         
-        gameStateManager._ballManager.aimGuide.SetActive(true);     
+        BallManager.instance.ball.SetActive(true);
+        BallManager.instance.aimGuide.SetActive(true);
 
         // Enable all UI Panels
-        gameStateManager._uIManager.gamePlayUI.SetActive(true);
-        gameStateManager._uIManager.mainMenuUI.SetActive(true);
-        gameStateManager._uIManager.levelCompleteUI.SetActive(true);
-        gameStateManager._uIManager.levelFailedUI.SetActive(true);
-        gameStateManager._uIManager.gameCompleteUI.SetActive(true);
-        gameStateManager._uIManager.pauseMenuUI.SetActive(true);
+        UIManager.instance.gamePlayUI.SetActive(true);
+        UIManager.instance.mainMenuUI.SetActive(true);
+        UIManager.instance.levelCompleteUI.SetActive(true);
+        UIManager.instance.levelFailedUI.SetActive(true);
+        UIManager.instance.gameCompleteUI.SetActive(true);
+        UIManager.instance.pauseMenuUI.SetActive(true);
 
         // Switch to MainMenu state
-        gameStateManager.SwitchToState(new GameState_MainMenu());
+        GameStateManager.instance.SwitchToState(new GameState_MainMenu());
 
-        // Need to set the correctCamera off
+
+
 
     }
 
@@ -43,11 +44,13 @@ public class GameState_GameInit : IGameState
     public void ExitState(GameStateManager gameStateManager) 
     {
         // Disable Ball & AimGuide
-        gameStateManager._ballManager.ball.SetActive(false);
-        gameStateManager._ballManager.aimGuide.SetActive(false);
+        BallManager.instance.ball.SetActive(false);
+        BallManager.instance.aimGuide.SetActive(false);
+
+
 
         // Disable all UI Panels
-        gameStateManager._uIManager.DisableAllUIPanels();
+        UIManager.instance.DisableAllUIPanels();
     }
 
 }

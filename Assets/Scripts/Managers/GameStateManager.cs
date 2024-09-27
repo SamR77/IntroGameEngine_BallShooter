@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 // Sam Robichaud 
 // NSCC Truro 2024
@@ -6,10 +7,33 @@ using UnityEngine;
 
 public class GameStateManager : MonoBehaviour
 {
+    #region Static instance
+    // Public static property to access the singleton instance of GameStateManager
+    public static GameStateManager instance
+    {
+        get
+        {
+            // If the instance is not set, instantiate a new one from resources
+            if (_instance == null)
+            {
+                // Loads the GameStateManager prefab from Resources folder and instantiates it
+                var go = (GameObject)GameObject.Instantiate(Resources.Load("GameStateManager"));
+            }
+            // Return the current instance (if set) or the newly instantiated instance
+            return _instance;
+        }
+        // Private setter to prevent external modification of the instance
+        private set { }
+    }
+    // Private static variable to hold the singleton instance of GameStateManager
+    private static GameStateManager _instance;
+    #endregion
+
     [Header("Debug (read only)")]
     [SerializeField] private string lastActiveState;
     [SerializeField] private string currentActiveState;
 
+    /*
     [Header("Script References")]
     public GameManager _gameManager;
     public LevelManager _levelManager;
@@ -17,6 +41,7 @@ public class GameStateManager : MonoBehaviour
     public BallManager _ballManager;
     public CameraManager _cameraManager;
     public InputManager _inputManager;
+    */
 
     // Private variables to store state information
     private IGameState currentGameState;  // Current active state
@@ -40,14 +65,30 @@ public class GameStateManager : MonoBehaviour
 
 
 
-    void Awake()
+
+    private void Awake()
     {
+        #region Singleton Pattern
+        // If there is an instance, and it's not me, delete myself.
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        _instance = this;
+        DontDestroyOnLoad(gameObject);
+        #endregion
+
+
+        /*
         // Check for missing script references
         if (_gameManager == null) { Debug.LogError("GameManager is not assigned in the Inspector!"); }
         if (_levelManager == null) { Debug.LogError("LevelManager is not assigned in the Inspector!"); }
         if (_uIManager == null) { Debug.LogError("UIManager is not assigned in the Inspector!"); }
         if (_ballManager == null) { Debug.LogError("BallManager is not assigned in the Inspector!"); }
         if (_cameraManager == null) { Debug.LogError("CameraManager is not assigned in the Inspector!"); }
+        */
+
 
         // Start in the GameInit state when the game is first loaded
         // GameInit is responsible for initializing/resetting the game

@@ -7,6 +7,29 @@ using Cinemachine;
 
 public class CameraManager : MonoBehaviour
 {
+    #region Static instance
+    // Public static property to access the singleton instance of GameStateManager
+    public static CameraManager instance
+    {
+        get
+        {
+            // If the instance is not set, instantiate a new one from resources
+            if (_instance == null)
+            {
+                // Loads the GameStateManager prefab from Resources folder and instantiates it
+                var go = (GameObject)GameObject.Instantiate(Resources.Load("GameStateManager"));
+            }
+            // Return the current instance (if set) or the newly instantiated instance
+            return _instance;
+        }
+        // Private setter to prevent external modification of the instance
+        private set { }
+    }
+    // Private static variable to hold the singleton instance of GameStateManager
+    private static CameraManager _instance;
+    #endregion
+
+
     public GameObject VCamGameplay;
     public GameObject VCamMainMenu;
 
@@ -17,6 +40,21 @@ public class CameraManager : MonoBehaviour
 
     public Vector3 cameraOffset = new Vector3(0, 5, -10);
 
+
+
+    private void Awake()
+    {
+        #region Singleton Pattern
+        // If there is an instance, and it's not me, delete myself.
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        _instance = this;
+        DontDestroyOnLoad(gameObject);
+        #endregion
+    }
 
 
     public void UseMainMenuCamera()
@@ -50,7 +88,7 @@ public class CameraManager : MonoBehaviour
    
     public void ResetCameraPosition()
     {
-        Debug.Log("camera_reset");
+        //Debug.Log("camera_reset");
         
         //cinemachineBrain.enabled = false;// an attempt to hide the repositioning.    
 

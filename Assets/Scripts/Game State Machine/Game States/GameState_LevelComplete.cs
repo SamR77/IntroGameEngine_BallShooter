@@ -7,26 +7,36 @@ using UnityEngine.SceneManagement;
 
 
 public class GameState_LevelComplete : IGameState
-{  
+{      
+    CameraManager _cameraManager; 
+    UIManager _uiManager; 
+
+    void awake()
+    {
+        _cameraManager = CameraManager.instance;
+        _uiManager = UIManager.instance;
+    }
+
+
     public void EnterState(GameStateManager gameStateManager)
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
 
         // Lock the camera's rotation to prevent further movement.
-        gameStateManager._cameraManager.DisableCameraRotation();
+        CameraManager.instance.DisableCameraRotation();
 
         // Check if the current level is the last level by comparing the build index 
         // of the active scene with the total number of scenes in the build settings.
         if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 1)
         {
             // If this is the last level, show the "Game Complete" UI.
-            gameStateManager._uIManager.UIGameComplete();
+            UIManager.instance.UIGameComplete();
         }
         else
         {
             // If this is not the last level, show the "Level Complete" UI.
-            gameStateManager._uIManager.UILevelComplete();
+            UIManager.instance.UILevelComplete();
         }
     }
 
@@ -40,6 +50,6 @@ public class GameState_LevelComplete : IGameState
     public void ExitState(GameStateManager gameStateManager)
     {
         // Unlock the camera's rotation to allow movement in the next state.  **** shouldnt we just do this in the enter state of the next state?
-        gameStateManager._cameraManager.EnableCameraRotation();
+        CameraManager.instance.EnableCameraRotation();
     }
 }

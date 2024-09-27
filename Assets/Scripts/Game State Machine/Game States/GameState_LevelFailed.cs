@@ -10,8 +10,8 @@ public class GameState_LevelFailed : IGameState
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
 
-        gameStateManager._uIManager.UILevelFailed();
-        gameStateManager._cameraManager.DisableCameraRotation();
+        UIManager.instance.UILevelFailed();
+        CameraManager.instance.DisableCameraRotation();
     }
 
     public void FixedUpdateState(GameStateManager gameStateManager) { }
@@ -22,6 +22,6 @@ public class GameState_LevelFailed : IGameState
 
     public void ExitState(GameStateManager gameStateManager)
     {
-        gameStateManager._cameraManager.EnableCameraRotation();
+        CameraManager.instance.EnableCameraRotation();
     }
 }

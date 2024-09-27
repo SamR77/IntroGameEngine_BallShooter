@@ -7,51 +7,54 @@ using UnityEngine;
 
 public class GameState_Aim : IGameState
 {
-   
+
+  
+
+    void Awake()
+    {
+       
+    }
+
 
 
     public void EnterState(GameStateManager gameStateManager)
     {
         Cursor.visible = false;
 
-        gameStateManager._uIManager.UIGamePlay();
+        UIManager.instance.UIGamePlay();
 
-        gameStateManager._ballManager.aimGuide.SetActive(true);
-        gameStateManager._ballManager.ball.SetActive(true);  
-        gameStateManager._cameraManager.UseGameplayCamera();
+        BallManager.instance.aimGuide.SetActive(true);
+        BallManager.instance.ball.SetActive(true);
+        CameraManager.instance.UseGameplayCamera();
 
-        gameStateManager._uIManager.modeText.text = "Aim with MOUSE \n & \n Shoot with SPACE";
-
-
-
-       
+        UIManager.instance.modeText.text = "Aim with MOUSE \n & \n Shoot with SPACE";       
     }
 
     public void FixedUpdateState(GameStateManager gameStateManager) { }
 
     public void UpdateState(GameStateManager gameStateManager)
     {
-        if (gameStateManager._inputManager.shootBallTriggered)
+        if (InputManager.instance.shootBallTriggered)
         {
-            gameStateManager._ballManager.ballShoot();
-            gameStateManager.SwitchToState(gameStateManager.gameState_Rolling);
+            BallManager.instance.ballShoot();
+            GameStateManager.instance.SwitchToState(new GameState_Rolling());
         }
 
-        if (gameStateManager._inputManager.pauseTriggered)
+        if (InputManager.instance.pauseTriggered)
         {
-            gameStateManager.SwitchToState(gameStateManager.gameState_Paused);
+            GameStateManager.instance.SwitchToState(new GameState_Paused());
         }
     }
 
     public void LateUpdateState(GameStateManager gameStateManager)
     {
         // set aimGuide to match position of the ball
-        gameStateManager._ballManager.HandleAimGuide();
+        BallManager.instance.HandleAimGuide();
     }
 
     public void ExitState(GameStateManager gameStateManager)
     {
-        gameStateManager._ballManager.aimGuide.SetActive(false);
+        BallManager.instance.aimGuide.SetActive(false);
     }
 }
 

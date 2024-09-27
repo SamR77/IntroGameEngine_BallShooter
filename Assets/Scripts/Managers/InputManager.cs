@@ -1,12 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
+    #region Static instance
+    // Public static property to access the singleton instance of GameStateManager
+    public static InputManager instance
+    {
+        get
+        {
+            // If the instance is not set, instantiate a new one from resources
+            if (_instance == null)
+            {
+                // Loads the GameStateManager prefab from Resources folder and instantiates it
+                var go = (GameObject)GameObject.Instantiate(Resources.Load("InputManager"));
+            }
+            // Return the current instance (if set) or the newly instantiated instance
+            return _instance;
+        }
+        // Private setter to prevent external modification of the instance
+        private set { }
+    }
+    // Private static variable to hold the singleton instance of GameStateManager
+    private static InputManager _instance;
+    #endregion
+
+
     [Header("Input Action Asset")]
     [SerializeField] private InputActionAsset playerControls;
+
 
     [Header("Action Map Name References")]
     [SerializeField] private string actionMapName = "Player";
@@ -31,6 +53,17 @@ public class InputManager : MonoBehaviour
 
     void Awake()
     {
+        #region Singleton Pattern
+        // If there is an instance, and it's not me, delete myself.
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        _instance = this;
+        DontDestroyOnLoad(gameObject);
+        #endregion
+
         cameraZoomAction = playerControls.FindActionMap(actionMapName).FindAction(cameraZoom);
         cameraOrbitAction = playerControls.FindActionMap(actionMapName).FindAction(cameraOrbit);
         shootBallAction = playerControls.FindActionMap(actionMapName).FindAction(shootBall);
@@ -47,10 +80,12 @@ public class InputManager : MonoBehaviour
         cameraOrbitAction.performed += context => cameraOrbitInput = context.ReadValue<Vector2>();
         cameraOrbitAction.canceled += context => cameraOrbitInput = Vector2.zero;
 
-        shootBallAction.performed += context => shootBallTriggered = true;
+        shootBallAction.started += context => shootBallTriggered = true;
+        //shootBallAction.performed += context => shootBallTriggered = true;
         shootBallAction.canceled += context => shootBallTriggered = false;
 
-        pauseAction.performed += context => pauseTriggered = true;
+        pauseAction.started += context => pauseTriggered = true;
+        //pauseAction.performed += context => pauseTriggered = true;
         pauseAction.canceled += context => pauseTriggered = false;
     }
 
@@ -72,6 +107,7 @@ public class InputManager : MonoBehaviour
         shootBallAction.Disable();
         pauseAction.Disable();
     }
+    
 
 
 

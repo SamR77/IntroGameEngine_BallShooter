@@ -3,16 +3,32 @@ using UnityEngine.UI;
 using UnityEngine;
 
 // Sam Robichaud 
-// NSCC Truro 2022
+// NSCC Truro 2024
+// This work is licensed under CC BY-NC-SA 4.0 (https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 public class UIManager : MonoBehaviour
 {
-    //Script references
-    public GameObject ball;
-    private BallManager _ballController;
-
-    //private GameObject gameManager;
-    //private GameManager _gameManager;
+    #region Static instance
+    // Public static property to access the singleton instance of GameStateManager
+    public static UIManager instance
+    {
+        get
+        {
+            // If the instance is not set, instantiate a new one from resources
+            if (_instance == null)
+            {
+                // Loads the GameStateManager prefab from Resources folder and instantiates it
+                var go = (GameObject)GameObject.Instantiate(Resources.Load("UIManager"));
+            }
+            // Return the current instance (if set) or the newly instantiated instance
+            return _instance;
+        }
+        // Private setter to prevent external modification of the instance
+        private set { }
+    }
+    // Private static variable to hold the singleton instance of GameStateManager
+    private static UIManager _instance;
+    #endregion
 
     public GameObject gamePlayUI;
     public GameObject mainMenuUI;
@@ -21,15 +37,26 @@ public class UIManager : MonoBehaviour
     public GameObject levelFailedUI;
     public GameObject pauseMenuUI;
 
-
-
-
-
     public Text modeText;    
     public Text ShotsLeftCount;
 
     public Text LevelCount;
-    
+
+    private void Awake()
+    {
+        #region Singleton Pattern
+        // If there is an instance, and it's not me, delete myself.
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        _instance = this;
+        DontDestroyOnLoad(gameObject);
+        #endregion
+    }
+
+
     public void UpdateShotsleft(int count)
     {        
         ShotsLeftCount.text = count.ToString();
@@ -44,6 +71,11 @@ public class UIManager : MonoBehaviour
     {
         DisableAllUIPanels();
         mainMenuUI.SetActive(true);
+    }
+
+    public void PlayButton()
+    {
+        LevelManager.instance.LoadNextLevel();
     }
 
     public void UIGamePlay() // same as UIRolling.. consider merging them into one method for UIGameplay? make sure there are no issues first
