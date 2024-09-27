@@ -25,6 +25,7 @@ public class GameState_Paused : IGameState
         {
             GameStateManager.instance.UnPause();
             Debug.Log("Unpausing");
+            InputManager.instance.pauseTriggered = false;
         }
     }
 

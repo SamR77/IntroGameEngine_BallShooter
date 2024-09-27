@@ -47,7 +47,7 @@ public class InputManager : MonoBehaviour
     public float cameraZoomInput  { get; private set; }
     public Vector2 cameraOrbitInput { get; private set; }
     public bool shootBallTriggered  { get; private set; }
-    public bool pauseTriggered      { get; private set; }
+    public bool pauseTriggered;
  
 
 

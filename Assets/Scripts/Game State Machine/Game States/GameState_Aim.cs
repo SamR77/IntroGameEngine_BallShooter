@@ -43,6 +43,8 @@ public class GameState_Aim : IGameState
         if (InputManager.instance.pauseTriggered)
         {
             GameStateManager.instance.SwitchToState(new GameState_Paused());
+            // Reset the pauseTriggered flag
+            InputManager.instance.pauseTriggered = false;
         }
     }
 

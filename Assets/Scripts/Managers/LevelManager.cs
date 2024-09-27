@@ -29,23 +29,6 @@ public class LevelManager : MonoBehaviour
     private static LevelManager _instance;
     #endregion
 
-    CameraManager _cameraManager;
-    UIManager _uiManager;
-    InputManager _inputManager;
-    BallManager _ballManager;
-    GameStateManager _gameStateManager;
-    GameManager _gameManager;
-
-
-    /*
-    [Header("Script References")]
-    public GameManager _gameManager;
-    public UIManager _uIManager;
-    public BallManager _ballManager;
-    public GameStateManager _gameStateManager;
-    public CameraManager _cameraManager;
-    */
-
 
     public int nextScene;
     //private int currentScene;
@@ -63,20 +46,7 @@ public class LevelManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         #endregion
 
-        _cameraManager = CameraManager.instance;
-        _uiManager = UIManager.instance;
-        _inputManager = InputManager.instance;
-        _ballManager = BallManager.instance;
-        _gameStateManager = GameStateManager.instance;
-        _gameManager = GameManager.instance;
 
-        /*
-        // Check for missing script references
-        if (_uIManager == null) { Debug.LogError("UIManager is not assigned to LevelManager in the Inspector!"); }
-        if (_gameManager == null) { Debug.LogError("GameManager is not assigned to LevelManager in the Inspector!"); }
-        if (_ballManager == null) { Debug.LogError("UIManager is not assigned to LevelManager in the Inspector!"); }
-        if (_gameStateManager == null) { Debug.LogError("GameStateManager is not assigned to LevelManager in the Inspector!"); }
-        */
     }
 
 
@@ -87,7 +57,7 @@ public class LevelManager : MonoBehaviour
         if (nextScene <= SceneManager.sceneCountInBuildSettings)
         {
             LoadScene(nextScene);
-            _gameStateManager.SwitchToState(_gameStateManager.gameState_Aim);
+            GameStateManager.instance.SwitchToState(GameStateManager.instance.gameState_Aim);
         }
 
         else if (nextScene > SceneManager.sceneCountInBuildSettings)
@@ -105,13 +75,13 @@ public class LevelManager : MonoBehaviour
     public void LoadMainMenuScene()
     {
         LoadScene(0);
-        _gameStateManager.SwitchToState(_gameStateManager.gameState_GameInit);
+        GameStateManager.instance.SwitchToState(GameStateManager.instance.gameState_GameInit);
     }
 
     public void ReloadCurrentScene()
     {
         LoadScene(SceneManager.GetActiveScene().buildIndex);
-        _gameStateManager.SwitchToState(_gameStateManager.gameState_Aim);
+        GameStateManager.instance.SwitchToState(GameStateManager.instance.gameState_Aim);
     }
 
     public void QuitGame()
@@ -131,18 +101,18 @@ public class LevelManager : MonoBehaviour
             LevelInfo _levelInfo = FindObjectOfType<LevelInfo>();
 
             // Get the # shots(attempts) available for the level and update the UI
-            _gameManager.shotsLeft = _levelInfo.ShotsToComplete;
-            _uiManager.UpdateShotsleft(_levelInfo.ShotsToComplete);
+            GameManager.instance.shotsLeft = _levelInfo.ShotsToComplete;
+            UIManager.instance.UpdateShotsleft(_levelInfo.ShotsToComplete);
 
             // Update the current level # on the UI
-            _uiManager.UpdateLevelCount(LevelCount);
+            UIManager.instance.UpdateLevelCount(LevelCount);
 
             // Set the ball to the current level start position           
-            _ballManager.SetBallToStartPosition();
+            BallManager.instance.SetBallToStartPosition();
             //Debug.Break();
 
             // Set the camera to the current level start position
-            _cameraManager.ResetCameraPosition();
+            CameraManager.instance.ResetCameraPosition();
         }
 
         else if (scene.buildIndex == 0)
