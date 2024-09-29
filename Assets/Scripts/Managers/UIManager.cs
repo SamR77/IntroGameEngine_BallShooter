@@ -73,10 +73,18 @@ public class UIManager : MonoBehaviour
         mainMenuUI.SetActive(true);
     }
 
+    #region UI Button Methods
     public void PlayButton()
     {
         LevelManager.instance.LoadNextLevel();
     }
+
+    public void ResumeButton()
+    {
+        GameStateManager.instance.Resume();
+    }
+
+    #endregion 
 
     public void UIGamePlay() // same as UIRolling.. consider merging them into one method for UIGameplay? make sure there are no issues first
     {

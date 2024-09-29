@@ -14,12 +14,35 @@ public class GameState_Paused : IGameState
 
         UIManager.instance.UIPaused();
         CameraManager.instance.DisableCameraRotation();
+
+        // Suscribe to input events
+        InputManager.instance.ResumeEvent += HandleResume;
+       
+
+
     }
+
+    #region Events
+    private void HandleResume()
+    {        
+        GameStateManager.instance.Resume();
+        Debug.Log("Resume triggered in gameState_Paused");
+    }
+
+
+
+
+
+
+    #endregion
+
 
     public void FixedUpdateState(GameStateManager gameStateManager) {    }
 
     public void UpdateState(GameStateManager gameStateManager)
     {
+        /*
+
         // Pressing ESC key will unpause the game, Switch to last state stored
         if(InputManager.instance.pauseTriggered)
         {
@@ -27,6 +50,7 @@ public class GameState_Paused : IGameState
             Debug.Log("Unpausing");
             InputManager.instance.pauseTriggered = false;
         }
+        */
     }
 
     public void LateUpdateState(GameStateManager gameStateManager)  { }
@@ -37,5 +61,9 @@ public class GameState_Paused : IGameState
     {
         Time.timeScale = 1f;
         CameraManager.instance.EnableCameraRotation();
+
+
+        // Unsubscribe from input events
+        InputManager.instance.ResumeEvent -= HandleResume;
     }
 }

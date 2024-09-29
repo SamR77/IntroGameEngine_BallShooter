@@ -1,8 +1,8 @@
 {
-    "name": "PlayerControls",
+    "name": "GameInput",
     "maps": [
         {
-            "name": "Player",
+            "name": "Gameplay",
             "id": "f7676d1d-49da-4551-9d3b-258479c68add",
             "actions": [
                 {
@@ -128,6 +128,45 @@
                     "processors": "",
                     "groups": "",
                     "action": "CameraZoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "1ffdd7ae-a155-4a4d-95c7-8d6743704c92",
+            "actions": [
+                {
+                    "name": "Resume",
+                    "type": "Button",
+                    "id": "455b49c3-2eb8-485b-bdd0-9212fee82bfc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "aabe4910-d018-411b-b907-d91ae02cc18b",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Resume",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "758918f1-9697-4177-8906-0f1859d53338",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Resume",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -44,9 +44,11 @@ public class CinemachineCameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
+
         // Access the cameraZoomInput from the InputManager
-        float zoomInput = _inputManager.cameraZoomInput;
-        Debug.Log(zoomInput);
+        //float zoomInput = _inputManager.cameraZoomInput;
+        //Debug.Log(zoomInput);
 
         
             // Adjust the camera distance based on scroll input
@@ -57,6 +59,8 @@ public class CinemachineCameraController : MonoBehaviour
 
             // Set the new camera distance
             framingTransposer.m_CameraDistance = newDistance;
+
+        */
         
     }
 }

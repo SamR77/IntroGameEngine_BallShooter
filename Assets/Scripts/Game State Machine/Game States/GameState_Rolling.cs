@@ -16,14 +16,24 @@ public class GameState_Rolling : IGameState
         //Redundancies
         CameraManager.instance.UseGameplayCamera();        // cameraManager should already be set to gameplay camera coming into this state, this is just a redundancy
         CameraManager.instance.EnableCameraRotation();     // cameraRotation should already be unlocked coming into this state, this is just a redundancy
-        UIManager.instance.UIGamePlay();                   // shares same UI as AimState, should already be active coming into this state, this is just a redundancy
         
+        UIManager.instance.UIGamePlay();                   // shares same UI as AimState, should already be active coming into this state, this is just a redundancy
+
         UIManager.instance.modeText.text = "Wait for ball to stop";
 
         // Start the coroutine to check if the ball has stopped after a delay
         BallManager.instance.StartCoroutine(BallManager.instance.CheckBallStoppedAfterDelay());
-      
+
+        // Subscribe to Input Events       
+        InputManager.instance.PauseEvent += HandlePause;  
     }
+
+    #region Input Events
+    private void HandlePause()
+    {
+        GameStateManager.instance.Pause();
+    }
+    #endregion
 
     public void FixedUpdateState(GameStateManager gameStateManager) { }
 
@@ -35,7 +45,7 @@ public class GameState_Rolling : IGameState
         if (BallManager.instance.ballStopped == true)
         {
             Debug.Log("Ball has stopped");
-            
+
             if (GameManager.instance.shotsLeft > 0)
             {
                 // this means the goal has not been reached and there are still shots left
@@ -47,15 +57,17 @@ public class GameState_Rolling : IGameState
                 //you failed the level you fool... trigger the level failed state
                 GameStateManager.instance.SwitchToState(GameStateManager.instance.gameState_LevelFailed);
             }
-        }
-
-        //if (Input.GetKeyDown(KeyCode.Escape))
-        //{
-        //    GameStateManager.instance.SwitchToState(GameStateManager.instance.gameState_Paused);
-        //}
+        }    
     }
 
     public void LateUpdateState(GameStateManager gameStateManager) { }
 
-    public void ExitState(GameStateManager gameStateManager) { }
+    public void ExitState(GameStateManager gameStateManager)
+    {
+        // Unsubscribe from Input Events        
+        InputManager.instance.PauseEvent -= HandlePause;
+    }
+
+
+
 }

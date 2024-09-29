@@ -1,8 +1,12 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputManager : MonoBehaviour
+public class InputManager : MonoBehaviour, GameInput.IGameplayActions, GameInput.IUIActions
 {
+
+    private GameInput _gameInput;
+
     #region Static instance
     // Public static property to access the singleton instance of GameStateManager
     public static InputManager instance
@@ -25,30 +29,35 @@ public class InputManager : MonoBehaviour
     private static InputManager _instance;
     #endregion
 
+    private void OnEnable()
+    {
+        if(_gameInput == null)
+        {
+            _gameInput = new GameInput();
+            _gameInput.Gameplay.SetCallbacks(this);
+            _gameInput.UI.SetCallbacks(this);
+        }
+        SetActionMap_Gameplay();
 
-    [Header("Input Action Asset")]
-    [SerializeField] private InputActionAsset playerControls;
+    }
 
 
-    [Header("Action Map Name References")]
-    [SerializeField] private string actionMapName = "Player";
 
-    [Header("Action Name References")]
-    [SerializeField] private string cameraZoom = "CameraZoom";
-    [SerializeField] private string cameraOrbit = "CameraOrbit";
-    [SerializeField] private string shootBall = "ShootBall";
-    [SerializeField] private string pause = "Pause";
 
-    private InputAction cameraOrbitAction;
-    private InputAction cameraZoomAction;
-    private InputAction shootBallAction;
-    private InputAction pauseAction;
+    #region Events
 
-    public float cameraZoomInput  { get; private set; }
-    public Vector2 cameraOrbitInput { get; private set; }
-    public bool shootBallTriggered  { get; private set; }
-    public bool pauseTriggered;
- 
+    public event Action<Vector2> CameraOrbitEvent;
+
+    public event Action ShootBallEvent;
+
+    public event Action PauseEvent;
+    public event Action ResumeEvent;
+
+    public event Action <Vector2> CameraZoomEvent;
+
+
+    #endregion
+
 
 
     void Awake()
@@ -62,54 +71,59 @@ public class InputManager : MonoBehaviour
         }
         _instance = this;
         DontDestroyOnLoad(gameObject);
-        #endregion
-
-        cameraZoomAction = playerControls.FindActionMap(actionMapName).FindAction(cameraZoom);
-        cameraOrbitAction = playerControls.FindActionMap(actionMapName).FindAction(cameraOrbit);
-        shootBallAction = playerControls.FindActionMap(actionMapName).FindAction(shootBall);
-        pauseAction = playerControls.FindActionMap(actionMapName).FindAction(pause);
-
-       RegisterInputActions();
+        #endregion   
     }
 
-    void RegisterInputActions()
+    public void SetActionMap_Gameplay()
     {
-        cameraZoomAction.performed += context => cameraZoomInput = context.ReadValue<float>();
-        cameraZoomAction.canceled += context => cameraZoomInput =0;
-
-        cameraOrbitAction.performed += context => cameraOrbitInput = context.ReadValue<Vector2>();
-        cameraOrbitAction.canceled += context => cameraOrbitInput = Vector2.zero;
-
-        shootBallAction.started += context => shootBallTriggered = true;
-        //shootBallAction.performed += context => shootBallTriggered = true;
-        shootBallAction.canceled += context => shootBallTriggered = false;
-
-        pauseAction.started += context => pauseTriggered = true;
-        //pauseAction.performed += context => pauseTriggered = true;
-        pauseAction.canceled += context => pauseTriggered = false;
+        _gameInput.Gameplay.Enable();
+        _gameInput.UI.Disable();
     }
 
-    
-    
-    private void OnEnable()
+    public void SetActionMap_UI()
     {
-        cameraZoomAction.Enable();
-        cameraOrbitAction.Enable();
-        shootBallAction.Enable();
-        pauseAction.Enable();
+        _gameInput.Gameplay.Disable();
+        _gameInput.UI.Enable();
     }
-    
 
-    private void OnDisable()
+
+
+    // don't really need to feed this as the cameraOrbit input is read direcly by
+    // the "Cinemachine Input Provider" component on the Gameplay Virtual Camera
+    public void OnCameraOrbit(InputAction.CallbackContext context)
     {
-        cameraZoomAction.Disable();
-        cameraOrbitAction.Disable();
-        shootBallAction.Disable();
-        pauseAction.Disable();
+        CameraOrbitEvent?.Invoke(context.ReadValue<Vector2>());
     }
-    
+
+    public void OnShootBall(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Performed)
+        {
+            ShootBallEvent?.Invoke();
+        }
+    }
+
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Performed)
+        {
+            PauseEvent?.Invoke();
+            SetActionMap_UI();
+        }
+    }
+
+    public void OnCameraZoom(InputAction.CallbackContext context)
+    {
+        
+    }
 
 
-
-
+    public void OnResume(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            ResumeEvent?.Invoke();
+            SetActionMap_Gameplay();
+        }
+    }
 }

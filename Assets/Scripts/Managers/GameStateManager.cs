@@ -33,16 +33,6 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private string lastActiveState;
     [SerializeField] private string currentActiveState;
 
-    /*
-    [Header("Script References")]
-    public GameManager _gameManager;
-    public LevelManager _levelManager;
-    public UIManager _uIManager;
-    public BallManager _ballManager;
-    public CameraManager _cameraManager;
-    public InputManager _inputManager;
-    */
-
     // Private variables to store state information
     private IGameState currentGameState;  // Current active state
     private IGameState lastGameState;     // Last active state (kept private for encapsulation)
@@ -53,7 +43,6 @@ public class GameStateManager : MonoBehaviour
         get { return lastGameState; }
     }
 
-
     // Instantiate game state objects
     public GameState_GameInit gameState_GameInit = new GameState_GameInit();
     public GameState_MainMenu gameState_MainMenu = new GameState_MainMenu();
@@ -62,9 +51,6 @@ public class GameStateManager : MonoBehaviour
     public GameState_LevelComplete gameState_LevelComplete = new GameState_LevelComplete();
     public GameState_LevelFailed gameState_LevelFailed = new GameState_LevelFailed();
     public GameState_Paused gameState_Paused = new GameState_Paused();
-
-
-
 
     private void Awake()
     {
@@ -78,17 +64,6 @@ public class GameStateManager : MonoBehaviour
         _instance = this;
         DontDestroyOnLoad(gameObject);
         #endregion
-
-
-        /*
-        // Check for missing script references
-        if (_gameManager == null) { Debug.LogError("GameManager is not assigned in the Inspector!"); }
-        if (_levelManager == null) { Debug.LogError("LevelManager is not assigned in the Inspector!"); }
-        if (_uIManager == null) { Debug.LogError("UIManager is not assigned in the Inspector!"); }
-        if (_ballManager == null) { Debug.LogError("BallManager is not assigned in the Inspector!"); }
-        if (_cameraManager == null) { Debug.LogError("CameraManager is not assigned in the Inspector!"); }
-        */
-
 
         // Start in the GameInit state when the game is first loaded
         // GameInit is responsible for initializing/resetting the game
@@ -131,11 +106,11 @@ public class GameStateManager : MonoBehaviour
     // Method to switch between states
     public void SwitchToState(IGameState newState)
     {
-        // Exit the current state (handling cleanup and transitions)
-        currentGameState.ExitState(this);
-
         // Store the current state as the last state before switching
         lastGameState = currentGameState;
+
+        // Exit the current state (handling cleanup and transitions)
+        currentGameState.ExitState(this);        
 
         // Switch to the new state
         currentGameState = newState;
@@ -145,22 +120,50 @@ public class GameStateManager : MonoBehaviour
     }
 
 
-    // UI Button calls this to resume the game when paused
-    public void UnPause()
+    
+    public void Pause()
     {
+        SwitchToState(gameState_Paused);
+    }
+
+    // UI Button calls this to resume the game when paused
+    public void Resume()
+    {
+        Debug.Log("Resume Method called on GameStateManager");
+        Debug.Log("CurrentGameState: " + currentActiveState);
+        Debug.Log("LastGameState: " + lastActiveState);
+
+        if (currentGameState == gameState_Paused && LastGameState == gameState_Aim)
+        {
+            SwitchToState(gameState_Aim);
+            Debug.Log("Resuming gameplay in Aim state");
+        }
+        if (currentGameState == gameState_Paused && LastGameState == gameState_Rolling)
+        {
+            SwitchToState(gameState_Rolling);
+            Debug.Log("Resuming gameplay in Rolling state");
+        }
+
+        /*
         if (currentGameState == gameState_Paused)
         {
+
             if (LastGameState == gameState_Aim)
             {
+
                 SwitchToState(gameState_Aim);
+                Debug.Log("Resuming gameplay in Aim state");
             }
 
             else if (LastGameState == gameState_Rolling)
             {
+
                 SwitchToState(gameState_Rolling);
+                Debug.Log("Resuming gameplay in Rolling state");
             }
 
         }
+        */
     }
 
 }
