@@ -125,7 +125,7 @@ public class BallManager : MonoBehaviour
         if (other.gameObject.tag == "GoalTrigger")
         {
             Debug.Log("Goal Reached");
-            GameStateManager.instance.SwitchToState(GameStateManager.instance.gameState_LevelComplete);
+            GameStateManager.instance.SwitchToState(GameState_LevelComplete.instance);
             return;
         }
 

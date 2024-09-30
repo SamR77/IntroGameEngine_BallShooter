@@ -1,9 +1,24 @@
 using UnityEngine;
 public class GameState_LevelFailed : IGameState
 {
-    // Note: LevelCompleteState and LevelFailedState likly could be using the same UIPanel (UI_Results) 
+    // Note: LevelCompleteState and LevelFailedState likely could be using the same UIPanel (UI_Results) 
     // we can use can then feed the data into the UI panel based on the state that is active
     // This may require enabling/disabling some buttons for different logic?
+
+    #region Static instance
+    private static GameState_LevelFailed _instance;
+
+    public static GameState_LevelFailed instance
+    {
+        get
+        {
+            if (_instance == null) { _instance = new GameState_LevelFailed(); }
+            return _instance;
+        }
+    }
+    #endregion
+
+
 
     public void EnterState(GameStateManager gameStateManager)
     {

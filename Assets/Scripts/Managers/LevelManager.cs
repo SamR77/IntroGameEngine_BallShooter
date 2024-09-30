@@ -57,7 +57,7 @@ public class LevelManager : MonoBehaviour
         if (nextScene <= SceneManager.sceneCountInBuildSettings)
         {
             LoadScene(nextScene);
-            GameStateManager.instance.SwitchToState(GameStateManager.instance.gameState_Aim);
+            GameStateManager.instance.SwitchToState(GameState_Aim.instance);
         }
 
         else if (nextScene > SceneManager.sceneCountInBuildSettings)
@@ -75,13 +75,13 @@ public class LevelManager : MonoBehaviour
     public void LoadMainMenuScene()
     {
         LoadScene(0);
-        GameStateManager.instance.SwitchToState(GameStateManager.instance.gameState_GameInit);
+        GameStateManager.instance.SwitchToState(GameState_GameInit.instance);
     }
 
     public void ReloadCurrentScene()
     {
         LoadScene(SceneManager.GetActiveScene().buildIndex);
-        GameStateManager.instance.SwitchToState(GameStateManager.instance.gameState_Aim);
+        GameStateManager.instance.SwitchToState(GameState_Aim.instance);
     }
 
     public void QuitGame()

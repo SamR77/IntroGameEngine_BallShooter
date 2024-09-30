@@ -8,7 +8,20 @@ using UnityEngine;
 
 
 public class GameState_Aim : IGameState
-{    
+{
+    #region Static instance
+    private static GameState_Aim _instance;
+
+    public static GameState_Aim instance
+    {
+        get
+        {
+            if (_instance == null) { _instance = new GameState_Aim(); }
+            return _instance;
+        }
+    }
+    #endregion
+
     public void EnterState(GameStateManager gameStateManager)
     {
         Cursor.visible = false;
@@ -30,7 +43,7 @@ public class GameState_Aim : IGameState
     private void HandleShootBall()
     {        
         BallManager.instance.ballShoot();
-        GameStateManager.instance.SwitchToState(new GameState_Rolling());           
+        GameStateManager.instance.SwitchToState(GameState_Rolling.instance);           
     }
 
     private void HandlePause()
@@ -39,32 +52,9 @@ public class GameState_Aim : IGameState
     }
     #endregion
 
-
-
-
-
     public void FixedUpdateState(GameStateManager gameStateManager) { }
 
-    public void UpdateState(GameStateManager gameStateManager)
-    {
-
-
-        /*
-        if (InputManager.instance.shootBallTriggered)
-        {
-            BallManager.instance.ballShoot();
-            GameStateManager.instance.SwitchToState(new GameState_Rolling());
-        }
-
-        if (InputManager.instance.pauseTriggered)
-        {
-            GameStateManager.instance.SwitchToState(new GameState_Paused());
-            // Reset the pauseTriggered flag
-            InputManager.instance.pauseTriggered = false;
-        }
-        */
-
-    }
+    public void UpdateState(GameStateManager gameStateManager) {  }
 
     public void LateUpdateState(GameStateManager gameStateManager)
     {
@@ -80,13 +70,5 @@ public class GameState_Aim : IGameState
         InputManager.instance.ShootBallEvent -= HandleShootBall;
         InputManager.instance.PauseEvent -= HandlePause;
     }
-
-
-
-
-
-
-
-
 }
 

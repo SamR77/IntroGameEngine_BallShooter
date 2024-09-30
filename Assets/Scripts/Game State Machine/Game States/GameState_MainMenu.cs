@@ -1,10 +1,25 @@
 using UnityEngine;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 // Sam Robichaud 
 // NSCC Truro 2024
 // This work is licensed under CC BY-NC-SA 4.0 (https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 public class GameState_MainMenu : IGameState
 {
+    #region Static instance
+    private static GameState_MainMenu _instance;
+
+    public static GameState_MainMenu instance
+    {
+        get
+        {
+            if (_instance == null) { _instance = new GameState_MainMenu(); }
+            return _instance;
+        }
+    }
+    #endregion
+
+
     public void EnterState(GameStateManager gameStateManager)
     {
         Cursor.visible = true;

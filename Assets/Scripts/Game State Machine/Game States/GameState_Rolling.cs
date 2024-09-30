@@ -6,6 +6,20 @@ using UnityEngine;
 
 public class GameState_Rolling : IGameState
 {
+    #region Static instance
+    private static GameState_Rolling _instance;
+
+    public static GameState_Rolling instance
+    {
+        get
+        {
+            if (_instance == null) { _instance = new GameState_Rolling(); }                
+            return _instance;
+        }
+    }
+    #endregion
+
+
     public void EnterState(GameStateManager gameStateManager)
     {
         Cursor.visible = false;
@@ -50,12 +64,12 @@ public class GameState_Rolling : IGameState
             {
                 // this means the goal has not been reached and there are still shots left
                 // thought... would it make sense to have a bool for LevelComplete when the goal is reached that could be checked against here? It may not be needed as the logic already in place should interrupt this state before it gets here.
-                GameStateManager.instance.SwitchToState(GameStateManager.instance.gameState_Aim);
+                GameStateManager.instance.SwitchToState(GameState_Aim.instance);
             }
             else if (GameManager.instance.shotsLeft <= 0)
             {
                 //you failed the level you fool... trigger the level failed state
-                GameStateManager.instance.SwitchToState(GameStateManager.instance.gameState_LevelFailed);
+                GameStateManager.instance.SwitchToState(GameState_LevelFailed.instance);
             }
         }    
     }

@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 // Sam Robichaud 
 // NSCC Truro 2024
@@ -30,8 +29,8 @@ public class GameStateManager : MonoBehaviour
     #endregion
 
     [Header("Debug (read only)")]
-    [SerializeField] private string lastActiveState;
-    [SerializeField] private string currentActiveState;
+    [SerializeField] private string lastGameState_DebugString;
+    [SerializeField] private string currentGameState_DebugString;
 
     // Private variables to store state information
     private IGameState currentGameState;  // Current active state
@@ -67,7 +66,7 @@ public class GameStateManager : MonoBehaviour
 
         // Start in the GameInit state when the game is first loaded
         // GameInit is responsible for initializing/resetting the game
-        currentGameState = gameState_GameInit;
+        currentGameState = GameState_GameInit.instance;
     }
 
     #region State Machine Update Calls
@@ -91,8 +90,8 @@ public class GameStateManager : MonoBehaviour
         currentGameState.UpdateState(this);
 
         // Keeping track of active and last states for debugging purposes
-        currentActiveState = currentGameState.ToString();   // Show current state in Inspector
-        lastActiveState = lastGameState?.ToString();        // Show last state in Inspector
+        currentGameState_DebugString = currentGameState.ToString();   // Show current state in Inspector
+        lastGameState_DebugString = lastGameState.ToString();        // Show last state in Inspector
     }
 
     // LateUpdate for any updates that need to happen after regular Update
@@ -118,52 +117,25 @@ public class GameStateManager : MonoBehaviour
         // Enter the new state (initialize any necessary logic)
         currentGameState.EnterState(this);
     }
-
-
     
     public void Pause()
     {
-        SwitchToState(gameState_Paused);
+        SwitchToState(GameState_Paused.instance);
     }
 
     // UI Button calls this to resume the game when paused
     public void Resume()
-    {
-        Debug.Log("Resume Method called on GameStateManager");
-        Debug.Log("CurrentGameState: " + currentActiveState);
-        Debug.Log("LastGameState: " + lastActiveState);
+    {   
 
-        if (currentGameState == gameState_Paused && LastGameState == gameState_Aim)
+        if (currentGameState == GameState_Paused.instance && LastGameState == GameState_Aim.instance)
         {
-            SwitchToState(gameState_Aim);
+            SwitchToState(GameState_Aim.instance);
             Debug.Log("Resuming gameplay in Aim state");
         }
-        if (currentGameState == gameState_Paused && LastGameState == gameState_Rolling)
+        if (currentGameState == GameState_Paused.instance && LastGameState == GameState_Rolling.instance)
         {
-            SwitchToState(gameState_Rolling);
+            SwitchToState(GameState_Rolling.instance);
             Debug.Log("Resuming gameplay in Rolling state");
-        }
-
-        /*
-        if (currentGameState == gameState_Paused)
-        {
-
-            if (LastGameState == gameState_Aim)
-            {
-
-                SwitchToState(gameState_Aim);
-                Debug.Log("Resuming gameplay in Aim state");
-            }
-
-            else if (LastGameState == gameState_Rolling)
-            {
-
-                SwitchToState(gameState_Rolling);
-                Debug.Log("Resuming gameplay in Rolling state");
-            }
-
-        }
-        */
+        }       
     }
-
 }

@@ -10,6 +10,20 @@ public class GameState_GameInit : IGameState
     // It will be used to set up all default settings
     // I realize this likley could be done in the MainMenu state as returning to it could count as a game reset of sorts... but it seems cleaner to have it's own state for this
 
+
+    #region Static instance
+    private static GameState_GameInit _instance;
+
+    public static GameState_GameInit instance
+    {
+        get
+        {
+            if (_instance == null) { _instance = new GameState_GameInit(); }                
+            return _instance;
+        }
+    }
+    #endregion
+
     public void EnterState(GameStateManager gameStateManager)
     {
         Cursor.visible = false;
@@ -29,7 +43,7 @@ public class GameState_GameInit : IGameState
         UIManager.instance.pauseMenuUI.SetActive(true);
 
         // Switch to MainMenu state
-        GameStateManager.instance.SwitchToState(new GameState_MainMenu());
+        GameStateManager.instance.SwitchToState(GameState_MainMenu.instance);
 
 
 

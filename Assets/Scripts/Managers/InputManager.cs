@@ -38,7 +38,6 @@ public class InputManager : MonoBehaviour, GameInput.IGameplayActions, GameInput
             _gameInput.UI.SetCallbacks(this);
         }
         SetActionMap_Gameplay();
-
     }
 
 

@@ -6,6 +6,21 @@ using UnityEngine;
 
 public class GameState_Paused : IGameState
 {
+    #region Static instance
+    private static GameState_Paused _instance;
+
+    public static GameState_Paused instance
+    {
+        get
+        {
+            if (_instance == null) { _instance = new GameState_Paused(); }
+            return _instance;
+        }
+    }
+    #endregion
+
+
+
     public void EnterState(GameStateManager gameStateManager)
     {
         Time.timeScale = 0f;

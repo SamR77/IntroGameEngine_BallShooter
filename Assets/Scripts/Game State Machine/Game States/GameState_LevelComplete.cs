@@ -7,7 +7,21 @@ using UnityEngine.SceneManagement;
 
 
 public class GameState_LevelComplete : IGameState
-{      
+{
+    #region Static instance
+    private static GameState_LevelComplete _instance;
+
+    public static GameState_LevelComplete instance
+    {
+        get
+        {
+            if (_instance == null) { _instance = new GameState_LevelComplete(); }
+            return _instance;
+        }
+    }
+    #endregion
+
+
     CameraManager _cameraManager; 
     UIManager _uiManager; 
 
