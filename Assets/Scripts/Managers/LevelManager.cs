@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.Loading;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 // Sam Robichaud 
@@ -56,8 +57,7 @@ public class LevelManager : MonoBehaviour
 
         if (nextScene <= SceneManager.sceneCountInBuildSettings)
         {
-            LoadScene(nextScene);
-            GameStateManager.instance.SwitchToState(GameState_Aim.instance);
+            LoadScene(nextScene);            
         }
 
         else if (nextScene > SceneManager.sceneCountInBuildSettings)
@@ -66,10 +66,20 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    void LoadScene(int sceneId)
+    public void LoadScene(int sceneId)
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.LoadScene(sceneId);
+
+        if (sceneId == 0) // Loading Main Menu
+        {            
+            GameStateManager.instance.SwitchToState(GameState_MainMenu.instance);
+        }
+        else // Gameplay level
+        {
+            GameStateManager.instance.SwitchToState(GameState_Aim.instance);
+        }
+
     }
 
     public void LoadMainMenuScene()

@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
+using System.Security.Cryptography;
 
 // Sam Robichaud 
 // NSCC Truro 2024
@@ -37,10 +39,9 @@ public class UIManager : MonoBehaviour
     public GameObject levelFailedUI;
     public GameObject pauseMenuUI;
 
-    public Text modeText;    
-    public Text ShotsLeftCount;
-
-    public Text LevelCount;
+    public TMP_Text modeText;
+    public TMP_Text ShotsLeftCount;
+    public TMP_Text LevelCount;
 
     private void Awake()
     {
@@ -58,7 +59,7 @@ public class UIManager : MonoBehaviour
 
 
     public void UpdateShotsleft(int count)
-    {        
+    {
         ShotsLeftCount.text = count.ToString();
     }
 
@@ -127,6 +128,46 @@ public class UIManager : MonoBehaviour
         levelFailedUI.SetActive(false);
         pauseMenuUI.SetActive(false);
     }
+
+
+
+
+    #region UI Buttons
+
+    public void UIButton_Play()
+    {
+        // Starts the game at the first scene in the build index
+        LevelManager.instance.LoadScene(02);
+    }
+
+    public void UIButton_Credits()
+    {
+        Debug.LogWarning("Button Logic for Credits not yet configured");
+    }
+
+    public void UIButton_Resume()
+    {
+        Debug.LogWarning("Button Logic for Resume not yet configured");
+    }
+
+    public void UIButton_Options()
+    {
+        Debug.LogWarning("Button Logic for Options not yet configured");
+    }
+
+
+    public void UIButton_Quit()
+    {
+        Application.Quit();
+    }
+
+
+
+
+
+
+
+    #endregion
 
 
 
