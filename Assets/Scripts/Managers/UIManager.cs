@@ -147,7 +147,7 @@ public class UIManager : MonoBehaviour
 
     public void UIButton_Resume()
     {
-        Debug.LogWarning("Button Logic for Resume not yet configured");
+        GameStateManager.instance.Resume();
     }
 
     public void UIButton_Options()

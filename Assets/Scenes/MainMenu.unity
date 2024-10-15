@@ -5271,18 +5271,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 231967789}
   m_Mesh: {fileID: 638682932}
---- !u!114 &240527035 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8528559043473393353, guid: e4e95ce393931bc40bbfb04654bc93c7,
-    type: 3}
-  m_PrefabInstance: {fileID: 561804621}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c417d5c55bfddc4fa6d2681245fd38e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &298362145
 GameObject:
   m_ObjectHideFlags: 0
@@ -7636,7 +7624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 8.006435, z: -14.0045}
+  m_FollowOffset: {x: 0, y: 7.999333, z: -13.99953}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -11308,126 +11296,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1151398435608208555, guid: e4e95ce393931bc40bbfb04654bc93c7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1151398435608208555, guid: e4e95ce393931bc40bbfb04654bc93c7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1151398435608208555, guid: e4e95ce393931bc40bbfb04654bc93c7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 240527035}
-    - target: {fileID: 1151398435608208555, guid: e4e95ce393931bc40bbfb04654bc93c7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1151398435608208555, guid: e4e95ce393931bc40bbfb04654bc93c7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UIButton_Credits
-      objectReference: {fileID: 0}
-    - target: {fileID: 1151398435608208555, guid: e4e95ce393931bc40bbfb04654bc93c7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UIManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1151398435608208555, guid: e4e95ce393931bc40bbfb04654bc93c7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 1237921013370436714, guid: e4e95ce393931bc40bbfb04654bc93c7,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4355669047782809363, guid: e4e95ce393931bc40bbfb04654bc93c7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4355669047782809363, guid: e4e95ce393931bc40bbfb04654bc93c7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4355669047782809363, guid: e4e95ce393931bc40bbfb04654bc93c7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 240527035}
-    - target: {fileID: 4355669047782809363, guid: e4e95ce393931bc40bbfb04654bc93c7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4355669047782809363, guid: e4e95ce393931bc40bbfb04654bc93c7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UIButton_Quit
-      objectReference: {fileID: 0}
-    - target: {fileID: 4355669047782809363, guid: e4e95ce393931bc40bbfb04654bc93c7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UIManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4355669047782809363, guid: e4e95ce393931bc40bbfb04654bc93c7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 6582259830542906958, guid: e4e95ce393931bc40bbfb04654bc93c7,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1049341179}
-    - target: {fileID: 7286461565087918962, guid: e4e95ce393931bc40bbfb04654bc93c7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7286461565087918962, guid: e4e95ce393931bc40bbfb04654bc93c7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7286461565087918962, guid: e4e95ce393931bc40bbfb04654bc93c7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 240527035}
-    - target: {fileID: 7286461565087918962, guid: e4e95ce393931bc40bbfb04654bc93c7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7286461565087918962, guid: e4e95ce393931bc40bbfb04654bc93c7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UIButton_Options
-      objectReference: {fileID: 0}
-    - target: {fileID: 7286461565087918962, guid: e4e95ce393931bc40bbfb04654bc93c7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UIManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7286461565087918962, guid: e4e95ce393931bc40bbfb04654bc93c7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7319409877317744647, guid: e4e95ce393931bc40bbfb04654bc93c7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UIButton_Play
-      objectReference: {fileID: 0}
     - target: {fileID: 7930759258687432598, guid: e4e95ce393931bc40bbfb04654bc93c7,
         type: 3}
       propertyPath: m_Name
@@ -11483,11 +11356,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8528559043473393353, guid: e4e95ce393931bc40bbfb04654bc93c7,
-        type: 3}
-      propertyPath: modeText
-      value: 
-      objectReference: {fileID: 1174105142}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -28161,18 +28029,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1141769751}
   m_Mesh: {fileID: 538338261}
---- !u!114 &1174105142 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3654980276206748438, guid: e4e95ce393931bc40bbfb04654bc93c7,
-    type: 3}
-  m_PrefabInstance: {fileID: 561804621}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1187483284
 GameObject:
   m_ObjectHideFlags: 0
@@ -42429,7 +42285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 8.006435, z: -14.0045}
+  m_FollowOffset: {x: 0, y: 7.999333, z: -13.99953}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -46961,7 +46817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 8.006435, z: -14.0045}
+  m_FollowOffset: {x: 0, y: 7.999333, z: -13.99953}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
