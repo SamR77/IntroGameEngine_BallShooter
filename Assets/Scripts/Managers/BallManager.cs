@@ -35,14 +35,6 @@ public class BallManager : MonoBehaviour
     public Rigidbody rb_ball;
     public GameObject aimGuide;
 
-    /*
-    [Header("Script References")]
-    public UIManager _uIManager;
-    public GameManager _gameManager;
-    public GameStateManager _gameStateManager;
-    public CameraManager _cameraManager;
-    */
-
     public bool ballStopped;
     public float ballMagnitudeStopThreshold = 0.1f; // Adjust this value as needed
     public float ballStopCheckDelay = 0.5f; // Adjust this value as needed
@@ -62,16 +54,6 @@ public class BallManager : MonoBehaviour
         _instance = this;
         DontDestroyOnLoad(gameObject);
         #endregion
-
-        
-
-        /*
-        // Check for missing script references
-        if (_uIManager == null) { Debug.LogError("UIManager is not assigned to BallManager in the Inspector!"); }
-        if (_gameManager == null) { Debug.LogError("GameManager is not assigned to BallManager in the Inspector!"); }
-        if (_gameStateManager == null) { Debug.LogError("GameStateManager is not assigned to BallManager in the Inspector!"); }
-        if (_cameraManager == null) { Debug.LogError("CameraManager is not assigned to BallManager in the Inspector!"); }
-        */
     }
 
 
@@ -95,7 +77,6 @@ public class BallManager : MonoBehaviour
     {
         GameManager.instance.shotsLeft -= 1;
         UIManager.instance.UpdateShotsleft(GameManager.instance.shotsLeft);
-
 
         ballStopped = false; // the ball should be moving at this point
         rb_ball.AddForce(aimGuide.transform.forward * 25, ForceMode.VelocityChange);

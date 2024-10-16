@@ -45,9 +45,7 @@ public class LevelManager : MonoBehaviour
         }
         _instance = this;
         DontDestroyOnLoad(gameObject);
-        #endregion
-
-
+        #endregion        
     }
 
 
@@ -71,6 +69,7 @@ public class LevelManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.LoadScene(sceneId);
 
+        
         if (sceneId == 0) // Loading Main Menu
         {            
             GameStateManager.instance.SwitchToState(GameState_MainMenu.instance);
@@ -79,7 +78,6 @@ public class LevelManager : MonoBehaviour
         {
             GameStateManager.instance.SwitchToState(GameState_Aim.instance);
         }
-
     }
 
     public void LoadMainMenuScene()
@@ -92,6 +90,9 @@ public class LevelManager : MonoBehaviour
     {
         LoadScene(SceneManager.GetActiveScene().buildIndex);
         GameStateManager.instance.SwitchToState(GameState_Aim.instance);
+
+        // this corrects an issue when scene is reloaded, input stops responding... re-initializes the Input Map?
+        InputManager.instance.SetActionMap_Gameplay();
     }
 
     public void QuitGame()

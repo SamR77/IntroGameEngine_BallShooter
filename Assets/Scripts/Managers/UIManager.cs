@@ -134,41 +134,18 @@ public class UIManager : MonoBehaviour
 
     #region UI Buttons
 
-    public void UIButton_Play()
-    {
-        // Starts the game at the first scene in the build index
-        LevelManager.instance.LoadScene(02);
-    }
+    public void UIButton_Play()             {   LevelManager.instance.LoadNextLevel(); }
+    public void UIButton_Resume()           {   GameStateManager.instance.Resume(); } 
+    public void UIButton_Quit()             {   Application.Quit(); }
+    public void UIButton_LoadNextLevel()    {   LevelManager.instance.LoadNextLevel();  }
+    public void UIButton_LoadMainMenu()     {   LevelManager.instance.LoadMainMenuScene(); }
+    public void UIButton_ReloadLevel()      {   LevelManager.instance.ReloadCurrentScene(); }
 
-    public void UIButton_Credits()
-    {
-        Debug.LogWarning("Button Logic for Credits not yet configured");
-    }
-
-    public void UIButton_Resume()
-    {
-        GameStateManager.instance.Resume();
-    }
-
-    public void UIButton_Options()
-    {
-        Debug.LogWarning("Button Logic for Options not yet configured");
-    }
-
-
-    public void UIButton_Quit()
-    {
-        Application.Quit();
-    }
-
-
-
-
-
-
+    
+    public void UIButton_Apply()            { Debug.LogWarning("Button Logic for Apply button not yet configured"); }
+    public void UIButton_Back()             { Debug.LogWarning("Button Logic for Back button not yet configured"); }
+    public void UIButton_Options()          { Debug.LogWarning("Button Logic for Options button not yet configured"); }
+    public void UIButton_Credits()          { Debug.LogWarning("Button Logic for Credits button not yet configured"); }
 
     #endregion
-
-
-
 }

@@ -5,6 +5,10 @@ using Cinemachine;
 // NSCC Truro 2024
 // This work is licensed under CC BY-NC-SA 4.0 (https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
+// Potential better way to control the Camera Rotation https://smontambault.medium.com/unity-cinemachine-with-new-input-system-b608e13997c7
+
+
+
 public class CameraManager : MonoBehaviour
 {
     #region Static instance
@@ -88,16 +92,10 @@ public class CameraManager : MonoBehaviour
    
     public void ResetCameraPosition()
     {
-        //Debug.Log("camera_reset");
-        
-        //cinemachineBrain.enabled = false;// an attempt to hide the repositioning.    
-
         var offset = freeLookCamera.LookAt.rotation * new Vector3(0, 0, -14);
 
         freeLookCamera.ForceCameraPosition(freeLookCamera.LookAt.position + offset, freeLookCamera.LookAt.rotation);
         freeLookCamera.m_YAxis.Value = 0.5f;
-
-        //cinemachineBrain.enabled = true;// an attempt to hide the repositioning.  
     }
 
 

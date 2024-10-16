@@ -99,6 +99,7 @@ public class InputManager : MonoBehaviour, GameInput.IGameplayActions, GameInput
         if(context.phase == InputActionPhase.Performed)
         {
             ShootBallEvent?.Invoke();
+            Debug.Log("Shoot Ball");
         }
     }
 
