@@ -5,18 +5,22 @@ This work is licensed under CC BY-NC-SA 4.0 (https://creativecommons.org/license
 
 ═════ TODO: High Priority ══════
 
-• Bugfix: Investigate stuttering of AimGuide. seems to only happening when entering AimMode the 2nd time in a level.
+• QOL: Update InputManager, In Game Prompts to reflect the current control scheme (UI changes based on device).
+• Improvement: Revise control of Gameplay Vcam to use custom control method to allow for more control over aiming speed instead of using "Cinemachine Input Provider Component" 
+
 
 ═════ TODO: Mid Priority ══════
 
 • QOL: Change all Trigger to handle their logic themselves, right now it's being handled by the ball manager, and it makes it harder for students to understand/modify.
 • QOL: Add Debug function to skip between levels, to make tesing levels easier.
-• QOL: Switch to using New Input System, allows for simpler switching between different input devices, Gamepad vs Keyboard/Mouse
+• Improvement: add Options screen to allow player to adjust settings (Volume, Controls, etc).
+• Improvement: add Credits screen to properly credit all contributors.
+
 
 
 ══════ TODO: Low Priority (Nice to Have) ══════
 
-• Improvement: Improve visuals of Gameplay UI
+• Improvement: Improve visuals of Gameplay UI (HUD)
 • Improvement: Improve visuals of UI on all UI Panels	
 • Improvement: adjust MainMenu Ball Spawner Sequence. When the level first loads the initial ball spawn above the play sequence and cast shadows as they fall. Extend the ramp and have ball spawn further up the ramp so the shadows do not appear until the balls are in view.
 • Improvement: Update aiming guide visual.
@@ -33,8 +37,9 @@ This work is licensed under CC BY-NC-SA 4.0 (https://creativecommons.org/license
 
 ════ COMPLETED ═════
 
-
-• Oct 15//2024: Improvement: Udpated ALL UI to TextMeshPro
+• Oct/31/2024: Implemented cleaner version of InputManager, better encapsulation & easier to read.
+• Oct/15/2024: Bugfix: Corrected issue with Inputs not reponding after SceneReload *See notes in LevelManager
+• Oct/15/2024: Improvement: Udpated ALL UI to TextMeshPro
 • Sept/24/2024: Bugfix: Corrected issue with UI Scaling Incorrectly at different aspect ratios [Bug found by Kyle Lirette]
 • Sept/18/2024: Bugfix: [Contributer: Daniel Nascimento] Corrected bug with Cinemachine Camera not matching position/orientation of the StartPosition Gizmo (See BallManager.cs for details).
 • August/24/2024: QOL: Updated visual of StartPostion Gizmo so its easier for level designer to see facing.

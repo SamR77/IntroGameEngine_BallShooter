@@ -39,7 +39,7 @@ public class GameState_Rolling : IGameState
         BallManager.instance.StartCoroutine(BallManager.instance.CheckBallStoppedAfterDelay());
 
         // Subscribe to Input Events       
-        InputManager.instance.PauseEvent += HandlePause;  
+        InputManager.instance.TogglePauseEvent += HandlePause;  
     }
 
     #region Input Events
@@ -79,7 +79,7 @@ public class GameState_Rolling : IGameState
     public void ExitState(GameStateManager gameStateManager)
     {
         // Unsubscribe from Input Events        
-        InputManager.instance.PauseEvent -= HandlePause;
+        InputManager.instance.TogglePauseEvent -= HandlePause;
     }
 
 

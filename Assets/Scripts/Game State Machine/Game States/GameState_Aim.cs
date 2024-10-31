@@ -36,7 +36,7 @@ public class GameState_Aim : IGameState
 
         // Subscribe to input events
         InputManager.instance.ShootBallEvent += HandleShootBall;
-        InputManager.instance.PauseEvent += HandlePause;
+        InputManager.instance.TogglePauseEvent += HandlePause;
     }
 
     #region Input Events
@@ -68,7 +68,7 @@ public class GameState_Aim : IGameState
 
         // Unsubscribe from input events
         InputManager.instance.ShootBallEvent -= HandleShootBall;
-        InputManager.instance.PauseEvent -= HandlePause;
+        InputManager.instance.TogglePauseEvent -= HandlePause;
     }
 }
 

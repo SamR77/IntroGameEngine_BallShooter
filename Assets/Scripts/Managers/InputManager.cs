@@ -1,12 +1,10 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class InputManager : MonoBehaviour, GameInput.IGameplayActions, GameInput.IUIActions
+public class InputManager : MonoBehaviour, GameInput.IGameplayActions
 {
-
-    private GameInput _gameInput;
-
     #region Static instance
     // Public static property to access the singleton instance of GameStateManager
     public static InputManager instance
@@ -29,40 +27,21 @@ public class InputManager : MonoBehaviour, GameInput.IGameplayActions, GameInput
     private static InputManager _instance;
     #endregion
 
-    private void OnEnable()
+    public GameInput gameInput;
+
+    private void Awake()
     {
-        if(_gameInput == null)
+        // Initialize the GameInput instance
+        if (gameInput == null)
         {
-            _gameInput = new GameInput();
-            _gameInput.Gameplay.SetCallbacks(this);
-            _gameInput.UI.SetCallbacks(this);
+            gameInput = new GameInput();
         }
-        SetActionMap_Gameplay();
-    }
 
+        // Register this class to receive input callbacks
+        gameInput.Gameplay.SetCallbacks(this);
 
-
-
-    #region Events
-
-    public event Action<Vector2> CameraOrbitEvent;
-
-    public event Action ShootBallEvent;
-
-    public event Action PauseEvent;
-    public event Action ResumeEvent;
-
-    public event Action <Vector2> CameraZoomEvent;
-
-
-    #endregion
-
-
-
-    void Awake()
-    {
         #region Singleton Pattern
-        // If there is an instance, and it's not me, delete myself.
+        // If there is already an instance, and it's not me, delete myself.
         if (_instance != null)
         {
             Destroy(gameObject);
@@ -70,22 +49,76 @@ public class InputManager : MonoBehaviour, GameInput.IGameplayActions, GameInput
         }
         _instance = this;
         DontDestroyOnLoad(gameObject);
-        #endregion   
+        #endregion        
     }
 
-    public void SetActionMap_Gameplay()
+
+
+    private void OnEnable()
     {
-        _gameInput.Gameplay.Enable();
-        _gameInput.UI.Disable();
+        // Enable the input system
+        gameInput.Gameplay.Enable();
     }
 
-    public void SetActionMap_UI()
+    private void OnDisable()
     {
-        _gameInput.Gameplay.Disable();
-        _gameInput.UI.Enable();
+        // Disable the input system when the object is disabled
+        gameInput.Gameplay.Disable();
     }
 
 
+
+
+    #region Input Events    
+
+    public event Action<Vector2> CameraOrbitEvent;
+
+    public event Action ShootBallEvent;
+
+    public event Action TogglePauseEvent;
+    //public event Action ResumeEvent;
+
+    public event Action <Vector2> CameraZoomEvent;
+
+    #endregion
+
+
+
+    public void OnCameraOrbit(InputAction.CallbackContext context)
+    {        
+         Debug.Log("");
+         CameraOrbitEvent?.Invoke(context.ReadValue<Vector2>());       
+    }
+
+    public void OnShootBall(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log("");
+            ShootBallEvent?.Invoke();
+        }
+    }
+
+    public void OnTogglePause(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log("");
+            TogglePauseEvent?.Invoke();
+        }
+    }
+
+    public void OnCameraZoom(InputAction.CallbackContext context)
+    {
+        CameraZoomEvent?.Invoke(context.ReadValue<Vector2>());
+    }
+
+
+
+
+
+
+    /*
 
     // don't really need to feed this as the cameraOrbit input is read direcly by
     // the "Cinemachine Input Provider" component on the Gameplay Virtual Camera
@@ -126,4 +159,6 @@ public class InputManager : MonoBehaviour, GameInput.IGameplayActions, GameInput
             SetActionMap_Gameplay();
         }
     }
+
+    */
 }

@@ -31,7 +31,7 @@ public class GameState_Paused : IGameState
         CameraManager.instance.DisableCameraRotation();
 
         // Suscribe to input events
-        InputManager.instance.ResumeEvent += HandleResume;
+        InputManager.instance.TogglePauseEvent += HandleResume;
        
 
 
@@ -79,6 +79,6 @@ public class GameState_Paused : IGameState
 
 
         // Unsubscribe from input events
-        InputManager.instance.ResumeEvent -= HandleResume;
+        //InputManager.instance.ResumeEvent -= HandleResume;
     }
 }
