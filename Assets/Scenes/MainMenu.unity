@@ -9427,6 +9427,26 @@ PrefabInstance:
       propertyPath: m_ComponentOwner
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4088292794263534302, guid: b7a637385244cd542be87bbeaa378010,
+        type: 3}
+      propertyPath: m_Lens.FieldOfView
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4244044122132074760, guid: b7a637385244cd542be87bbeaa378010,
+        type: 3}
+      propertyPath: field of view
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423485267092026613, guid: b7a637385244cd542be87bbeaa378010,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 18.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423485267092026613, guid: b7a637385244cd542be87bbeaa378010,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 18.28
+      objectReference: {fileID: 0}
     - target: {fileID: 7306464101402024091, guid: b7a637385244cd542be87bbeaa378010,
         type: 3}
       propertyPath: m_ComponentOwner
@@ -9440,12 +9460,12 @@ PrefabInstance:
     - target: {fileID: 7686187809931404164, guid: b7a637385244cd542be87bbeaa378010,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: 18.54
       objectReference: {fileID: 0}
     - target: {fileID: 7686187809931404164, guid: b7a637385244cd542be87bbeaa378010,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.5
+      value: 18.28
       objectReference: {fileID: 0}
     - target: {fileID: 8347679135295106593, guid: b7a637385244cd542be87bbeaa378010,
         type: 3}
