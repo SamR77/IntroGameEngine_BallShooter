@@ -11,7 +11,7 @@ This work is licensed under CC BY-NC-SA 4.0 (https://creativecommons.org/license
 
 ═════ TODO: Mid Priority ══════
 
-• QOL: Change all Trigger to handle their logic themselves, right now it's being handled by the ball manager, and it makes it harder for students to understand/modify.
+• QOL: Change all Triggers to handle their logic themselves, right now it's being handled by the ball manager, and it makes it harder for students to understand/modify. Consider revising into events
 • QOL: Add Debug function to skip between levels, to make tesing levels easier.
 • Improvement: add Options screen to allow player to adjust settings (Volume, Controls, etc).
 • Improvement: add Credits screen to properly credit all contributors.
@@ -22,7 +22,7 @@ This work is licensed under CC BY-NC-SA 4.0 (https://creativecommons.org/license
 
 • Improvement: Improve visuals of Gameplay UI (HUD)
 • Improvement: Improve visuals of UI on all UI Panels	
-• Improvement: adjust MainMenu Ball Spawner Sequence. When the level first loads the initial ball spawn above the play sequence and cast shadows as they fall. Extend the ramp and have ball spawn further up the ramp so the shadows do not appear until the balls are in view.
+
 • Improvement: Update aiming guide visual.
 • Improvement: Add celebration sequence for end of level (VFX, Anim, SFX).
 • Improvement: Add Trail effect when the ball is rolling ball.
@@ -37,6 +37,8 @@ This work is licensed under CC BY-NC-SA 4.0 (https://creativecommons.org/license
 
 ════ COMPLETED ═════
 
+• Nov/06/2024: Improvement: Added Placeholder Main Menu Title Image.
+• Nov/06/2024: Improvement: adjust MainMenu Ball Spawner Sequence.
 • Oct/31/2024: Implemented cleaner version of InputManager, better encapsulation & easier to read.
 • Oct/15/2024: Bugfix: Corrected issue with Inputs not reponding after SceneReload *See notes in LevelManager
 • Oct/15/2024: Improvement: Udpated ALL UI to TextMeshPro

@@ -7624,7 +7624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 7.770564, z: -13.83692}
+  m_FollowOffset: {x: 0, y: 8.019558, z: -14.01367}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -11331,6 +11331,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 201401962322814355, guid: e4e95ce393931bc40bbfb04654bc93c7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 201401962322814355, guid: e4e95ce393931bc40bbfb04654bc93c7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824056327334313515, guid: e4e95ce393931bc40bbfb04654bc93c7,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5d5097678fb39b44f9b702b4f8362efb,
+        type: 3}
     - target: {fileID: 7930759258687432598, guid: e4e95ce393931bc40bbfb04654bc93c7,
         type: 3}
       propertyPath: m_Name
@@ -35574,10 +35590,10 @@ MonoBehaviour:
   StartingBalls: 100
   InitialSpawnXmin: -25
   InitialSpawnXmax: 25
-  InitialSpawnYmin: 4
-  InitialSpawnYmax: 125
-  InitialSpawnZmin: -30
-  InitialSpawnZmax: -10
+  InitialSpawnYmin: 2
+  InitialSpawnYmax: 6
+  InitialSpawnZmin: -28
+  InitialSpawnZmax: -34
   respawnXmin: -25
   RespawnXmax: 25
   RespawnYmin: 7
@@ -42499,7 +42515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 7.770564, z: -13.83692}
+  m_FollowOffset: {x: 0, y: 8.019558, z: -14.01367}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -47196,7 +47212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 7.770564, z: -13.83692}
+  m_FollowOffset: {x: 0, y: 8.019558, z: -14.01367}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1

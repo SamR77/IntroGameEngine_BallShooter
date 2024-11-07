@@ -13,14 +13,15 @@ public class MainMenuBallRespawner : MonoBehaviour
     [SerializeField] private int StartingBalls = 120;
 
 
-
+    [Header("Initial Spawn Area")]
     [SerializeField] private int InitialSpawnXmin = -25;
     [SerializeField] private int InitialSpawnXmax = 25;
-    [SerializeField] private int InitialSpawnYmin = 4;
-    [SerializeField] private int InitialSpawnYmax = 125;
-    [SerializeField] private int InitialSpawnZmin = -30;
-    [SerializeField] private int InitialSpawnZmax = -10;
+    [SerializeField] private int InitialSpawnYmin = 2;
+    [SerializeField] private int InitialSpawnYmax = 6;
+    [SerializeField] private int InitialSpawnZmin = -28;
+    [SerializeField] private int InitialSpawnZmax = -34;
 
+    [Header("Respawn Area")]
     [SerializeField] private int respawnXmin = -25;
     [SerializeField] private int RespawnXmax = 25;
     [SerializeField] private int RespawnYmin = 7;
@@ -34,11 +35,11 @@ public class MainMenuBallRespawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Initial Spawn
+        // Initial Spawn      
 
         
-         for (int i = 0; i < StartingBalls; i++)
-         {
+        for (int i = 0; i < StartingBalls; i++)
+        {
             SpawnBall(InitialSpawnXmin, InitialSpawnXmax, InitialSpawnYmin, InitialSpawnYmax, InitialSpawnZmin, InitialSpawnZmax);
 
              //int RandomX = Random.Range(-25, 25);
@@ -48,8 +49,19 @@ public class MainMenuBallRespawner : MonoBehaviour
              //GameObject go = Instantiate(ball, new Vector3(RandomX, RandomY, RandomZ), transform.rotation);
 
              //go.GetComponentInChildren<MeshRenderer>().material.color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
-         }        
+        }    
+        
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(new Vector3(InitialSpawnXmin + (InitialSpawnXmax - InitialSpawnXmin) / 2, InitialSpawnYmin + (InitialSpawnYmax - InitialSpawnYmin) / 2, InitialSpawnZmin + (InitialSpawnZmax - InitialSpawnZmin) / 2), new Vector3(InitialSpawnXmax - InitialSpawnXmin, InitialSpawnYmax - InitialSpawnYmin, InitialSpawnZmax - InitialSpawnZmin));
+        
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(new Vector3(respawnXmin + (RespawnXmax - respawnXmin) / 2, RespawnYmin + (RespawnYmax - RespawnYmin) / 2, RespawnZmin + (RespawnZmax - RespawnZmin) / 2), new Vector3(RespawnXmax - respawnXmin, RespawnYmax - RespawnYmin, RespawnZmax - RespawnZmin));
+    }
+    
 
 
 
