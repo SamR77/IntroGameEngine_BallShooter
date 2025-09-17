@@ -37,6 +37,10 @@ public class GameState_LevelComplete : IGameState
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
 
+        // TODO: create a method that slows down time duing the Level complete state
+        // perhaps a coroutine that gradually lerps to a minimum time scale.
+
+
         // Lock the camera's rotation to prevent further movement.
         CameraManager.instance.DisableCameraRotation();
 

@@ -70,7 +70,7 @@ public class BallManager : MonoBehaviour
     void Update()
     {
         // spits out the ball vector magnitude for debugging    
-        ballVelocityMagnitude = rb_ball.velocity.magnitude;
+        ballVelocityMagnitude = rb_ball.linearVelocity.magnitude;
     }
 
     public void ballShoot() // adds force to ball in a direction away from camera
@@ -90,7 +90,7 @@ public class BallManager : MonoBehaviour
         // Continuously check if the ball has stopped moving
         while (true)
         {
-            if (rb_ball.velocity.magnitude < ballMagnitudeStopThreshold)
+            if (rb_ball.linearVelocity.magnitude < ballMagnitudeStopThreshold)
             {
                 StopBall(); // Stop the ball
                 ballStopped = true;
@@ -157,7 +157,7 @@ public class BallManager : MonoBehaviour
         rb_ball.isKinematic = true;
         rb_ball.isKinematic = false;
         // Also setting velocities to zero just in case.
-        rb_ball.velocity = Vector3.zero;
+        rb_ball.linearVelocity = Vector3.zero;
         rb_ball.angularVelocity = Vector3.zero;
     }
 }
